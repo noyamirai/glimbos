@@ -1,7 +1,6 @@
 <main>
     <h1>Hi!</h1>
 
-
     <div id="content">
         <button id="tone-play-toggle">Start</button>
         <button id="tone-play-stop">end</button>
@@ -9,8 +8,10 @@
         <div class="container" id="tone-step-sequencer">
             <% for (let row = 0; row < 6; row++) { %>
                 <div class="column">
-                    <% for (let col = 0; col < 4; col++) { %>
-                        <button class="cell" data-row="<%= row %>" data-col="<%= col %>"></button>
+                    <% for (let col = 0; col < 5; col++) { %>
+                        <button class="cell" data-row="<%= row %>" data-col="<%= col %>">
+                            <%- include ('./partials/characters/character-kitty.ejs') -%>
+                        </button>
                     <% } %>
                 </div>
             <% } %>

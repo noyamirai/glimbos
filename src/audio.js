@@ -1,22 +1,56 @@
 export const pitchShifter = new Tone.PitchShift(0).toDestination();
 pitchShifter.windowSize = 0.01;
 
-export const recorder = new Tone.Recorder();
+const octaves = ['a','b','c','d','e','f','g'];
 
-
-// Set up the sound players
-const keys = new Tone.Players({
-  urls: {
-    0: "A1.mp3",
-    1: "Cs2.mp3",
-    2: "E2.mp3",
-    3: "Fs2.mp3",
+export const instrument = new Tone.Sampler({
+	urls: {
+    // 0: "hihat.mp3",
+    // 1: "kick.mp3",
+    // 2: "snare.mp3",
+    // 3: "tom1.mp3",
+    // "C4": "hihat.mp3",
+    // "D#4": "kick.mp3",
+    // "F#4": "snare.mp3",
+    // "A4": "tom1.mp3",
+    "C4": "C4.mp3",
+		"D#4": "Ds4.mp3",
+		"F#4": "Fs4.mp3",
+		"A4": "A4.mp3",
   },
-  fadeOut: "64n",
-  baseUrl: "https://tonejs.github.io/audio/casio/",
+	baseUrl: 'https://tonejs.github.io/audio/salamander/'
 })
-.connect(pitchShifter)
-.toDestination();
+	.connect(pitchShifter)
+	.toDestination();
+// export const instrument = new Tone.Sampler({
+// 	urls: {
+//     // 0: "hihat.mp3",
+//     // 1: "kick.mp3",
+//     // 2: "snare.mp3",
+//     // 3: "tom1.mp3",
+//     "C4": "hihat.mp3",
+//     "D#4": "kick.mp3",
+//     "F#4": "snare.mp3",
+//     "A4": "tom1.mp3",
+//   },
+// 	baseUrl: 'https://tonejs.github.io/audio/drum-samples/Techno/'
+// })
+// 	.connect(pitchShifter)
+// 	.toDestination();
+
+// export const instrument = new Tone.Players({
+//   urls: {
+//     0: "hihat.mp3",
+//     1: "kick.mp3",
+//     2: "snare.mp3",
+//     3: "tom1.mp3",
+//   },
+//   baseUrl: 'https://tonejs.github.io/audio/drum-samples/Techno/'
+// })
+//   .connect(pitchShifter)
+//   .toDestination();
+
+// const instrument = new Tone.Synth().toDestination();
 
 // Set up the step sequence
 const numSteps = 6;
@@ -41,30 +75,33 @@ stepButtons.forEach((button) => {
 // Start the step sequencer
 const playButton = document.querySelector("#tone-play-toggle");
 playButton.addEventListener("click", async () => {
-    console.log(GLOBAL_STEPS);
-    console.log(currentStep);
-    
-    await Tone.start();
-    Tone.Transport.stop();
-    Tone.Transport.cancel();
-    Tone.Transport.scheduleRepeat((time) => {
-    // Update the current step counter
-    // currentStep = (currentStep + 1) % numSteps;
-    currentStep = (currentStep % numSteps) + 1;
+  await Tone.start();
+  Tone.Transport.stop();
+  Tone.Transport.cancel();
 
-    const activeColumn = document.querySelectorAll(`.cell[data-row="${currentStep-1}"]`);
-    activeColumn.forEach((button) => {
-        const col = button.dataset.col;
-        if (GLOBAL_STEPS[col][currentStep-1]) {
-            // instrument.triggerAttackRelease(col, '8n', time);
-            keys.player(col).start(time);
-        }
-    });
-    // // Indicate which column is active
-    const columns = document.querySelectorAll(".column");
-    columns.forEach((column, i) => {
-        column.classList.toggle("sequence", i == (currentStep-1));
-    });
+  Tone.Transport.scheduleRepeat((time) => {
+
+  // Update the current step counter
+  currentStep = (currentStep % numSteps) + 1;
+
+  const activeColumn = document.querySelectorAll(`.cell[data-row="${currentStep-1}"]`);
+  activeColumn.forEach((button) => {
+      const col = button.dataset.col;
+
+      if (GLOBAL_STEPS[col][currentStep-1]) {
+        const selectedOctave = octaves[currentStep-1];
+        const pitch = `${selectedOctave.toUpperCase()}${col}`;
+        instrument.triggerAttackRelease(pitch, '8n', time);
+        // instrument.player(col).start(time);
+      }
+  });
+
+  // Indicate which column is active
+  const columns = document.querySelectorAll(".column");
+  columns.forEach((column, i) => {
+      column.classList.toggle("sequence", i == (currentStep-1));
+  });
+
   }, "6n");
 
   Tone.Transport.start();
@@ -90,7 +127,7 @@ stopButton.addEventListener("click", async () => {
 
 function initializeSteps() {
     const steps = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         steps.push(new Array(numSteps).fill(false));
     }
 
