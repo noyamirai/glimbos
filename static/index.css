@@ -1,0 +1,12 @@
+#lango {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    z-index: 10;
+    right: 10vw;
+    top: 20vw;
+}
+.lango {
+    height: 100%;
+    width: 100%;
+}
