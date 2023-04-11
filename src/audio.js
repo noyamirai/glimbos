@@ -3,67 +3,44 @@ pitchShifter.windowSize = 0.01;
 
 const octaves = ['a','b','c','d','e','f','g'];
 
-// export const instrument = new Tone.Sampler({
-// 	urls: {
-//     // 0: "hihat.mp3",
-//     // 1: "kick.mp3",
-//     // 2: "snare.mp3",
-//     // 3: "tom1.mp3",
-//     // "C4": "hihat.mp3",
-//     // "D#4": "kick.mp3",
-//     // "F#4": "snare.mp3",
-//     // "A4": "tom1.mp3",
-//     "C4": "C4.mp3",
-// 		"D#4": "Ds4.mp3",
-// 		"F#4": "Fs4.mp3",
-// 		"A4": "A4.mp3",
-//   },
-// 	baseUrl: 'https://tonejs.github.io/audio/salamander/'
-// })
-// 	.connect(pitchShifter)
-// 	.toDestination();
+const vocalTones = new Tone.Sampler({
+	urls: {
+    "C4": "12_Beats24-7_AhhAhh (D).wav",
+  },
+	baseUrl: '/static/samples/vocals/'
+})
+	.connect(pitchShifter)
+	.toDestination();
 
-// export const instrument = new Tone.Players({
-//   urls: {
-//     0: "hihat.mp3",
-//     1: "kick.mp3",
-//     2: "snare.mp3",
-//     3: "tom1.mp3",
-//   },
-//   baseUrl: 'https://tonejs.github.io/audio/drum-samples/Techno/'
-// })
-//   .connect(pitchShifter)
-//   .toDestination();
-
-let synth;
-let notes = [];
-// let notesFromApi = [];
+// let synth;
+// let notes = {};
 // const instrument = new Tone.Synth().toDestination();
 
-fetch("https://api-hitloop.responsible-it.nl/test_json?seed=120")
-  .then(response => response.json())
-  .then(midi => {
+// fetch("https://api-hitloop.responsible-it.nl/test_json?seed=120")
+//   .then(response => response.json())
+//   .then(midi => {
 
-    midi.tracks.forEach(track => {
+//     midi.tracks.forEach(track => {
 
-      // TODO: get categories
-      console.log(track);
-      const trackNotes = track.notes
+//       notes[track.name] = [];
 
-      trackNotes.forEach(note => {
-        notes.push({
-          pitch: note.name,
-          velocity: note.velocity,
-          time: note.time,
-          duration: note.duration,
-        });
-      });
-    });
+//       // TODO: get categories
+//       console.log(track);
+//       const trackNotes = track.notes
 
-    synth = new Tone.Synth().toDestination();
-    console.log(notes);
+//       trackNotes.forEach(note => {
+//         notes[track.name].push({
+//           pitch: note.name,
+//           velocity: note.velocity,
+//           time: note.time,
+//           duration: note.duration,
+//         });
+//       });
+//     });
 
-  });
+//     synth = new Tone.Synth().toDestination();
+
+//   });
 
 // Set up the step sequence
 const numSteps = 6;
@@ -93,10 +70,9 @@ playButton.addEventListener("click", async () => {
   Tone.Transport.cancel();
 
   Tone.Transport.scheduleRepeat((time) => {
-
+    console.log('hi');
       // Update the current step counter
       currentStep = (currentStep % numSteps) + 1;
-
       const activeColumn = document.querySelectorAll(`.cell[data-row="${currentStep-1}"]`);
       activeColumn.forEach((button) => {
           const col = button.dataset.col;
@@ -104,13 +80,22 @@ playButton.addEventListener("click", async () => {
           if (GLOBAL_STEPS[col][currentStep-1]) {
             const selectedOctave = octaves[currentStep-1];
             const pitch = `${selectedOctave.toUpperCase()}${col}`;
+            let duration;
+            const buffer = new Tone.Buffer("/static/samples/vocals/12_Beats24-7_AhhAhh (D).wav", () => {
+              // get the duration of the WAV file in seconds
+              duration = buffer.duration;
 
-            const event = notes[currentStep-1];
-            console.log(event);
+              vocalTones.triggerAttackRelease('C4', duration, time);
+            });
+            
+            // const event = notes[Object.keys(notes)[col]][currentStep-1];
+            // console.log(event);
 
             // synth.triggerAttackRelease(event.pitch, event.duration, event.time);
             // synth.triggerAttackRelease(event.pitch, '8n', time);
-            synth.triggerAttackRelease('C4', '8n', time);
+            // vocalTones.triggerAttackRelease('C4', '8n', time);
+
+            // OLD:
             // instrument.triggerAttackRelease(pitch, '8n', time);
             // instrument.player(col).start(time);
           }
@@ -124,7 +109,7 @@ playButton.addEventListener("click", async () => {
 
     }, "6n");
 
-  Tone.Transport.start();
+    Tone.Transport.start();
 });
 
 // Stop the step sequencer
@@ -153,3 +138,7 @@ function initializeSteps() {
 
     return steps;
 }
+
+function randomVelocity () {
+		return (Math.random() * 0.5 + 0.5) * 0.8;
+	};
