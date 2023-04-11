@@ -8,4 +8,12 @@ homeRouter.get('/', async (req, res) => {
     });
 });
 
+
+homeRouter.get('/sas', async (req, res) => {
+    res.render('layout', {
+        'view': 'blanco',
+        'partial': './partials/characters/character-kitty',
+    });
+});
+
 export default homeRouter;
