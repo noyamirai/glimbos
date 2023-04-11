@@ -52,7 +52,7 @@ const keys = new Tone.Players({
 }).toDestination();
 
 // Set up the step sequence
-const numSteps = 16;
+const numSteps = 6;
 let GLOBAL_STEPS = initializeSteps();
 
 // Set up the current step counter
@@ -97,7 +97,7 @@ playButton.addEventListener("click", async () => {
     columns.forEach((column, i) => {
         column.classList.toggle("sequence", i == (currentStep-1));
     });
-  }, "16n");
+  }, "6n");
 
   Tone.Transport.start();
 });
