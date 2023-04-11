@@ -8,9 +8,9 @@
         <div class="container" id="tone-step-sequencer">
             <% for (let row = 0; row < 6; row++) { %>
                 <div class="column">
-                    <% for (let col = 0; col < 5; col++) { %>
+                    <% for (let col = 0; col < 4; col++) { %>
                         <button class="cell" data-row="<%= row %>" data-col="<%= col %>">
-                            <%- include ('./partials/characters/character-kitty.ejs') -%>
+                            <!-- <%- include ('./partials/characters/character-kitty.ejs') -%> -->
                         </button>
                     <% } %>
                 </div>
@@ -48,5 +48,7 @@
     }
 </style>
 
+<script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
+
 <script type="module" src="/src/audio.js"></script>
