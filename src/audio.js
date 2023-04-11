@@ -1,43 +1,8 @@
-// export const pitchShifter = new Tone.PitchShift(0).toDestination();
-// pitchShifter.windowSize = 0.01;
+export const pitchShifter = new Tone.PitchShift(0).toDestination();
+pitchShifter.windowSize = 0.01;
 
-// export const recorder = new Tone.Recorder();
+export const recorder = new Tone.Recorder();
 
-// export const instrument = new Tone.Sampler({
-//     urls: {
-//         A1: 'A1.mp3',
-//         A2: 'A2.mp3'
-//     },
-//     baseUrl: 'https://tonejs.github.io/audio/casio/'
-// })
-//     .connect(pitchShifter)
-//     .connect(recorder)
-//     .toDestination();
-
-// document.querySelector("#tone-play-toggle").addEventListener("click", async () => {
-//     await Tone.start()
-//     console.log('start?');
-
-//     Tone.Transport.start();
-//     keys.player(1).start(1, 0, "16t");
-    
-// });
-
-// document.querySelector("#tone-play-toggle").addEventListener("click", () => Tone.Transport.stop());
-// document.querySelector("#tone-step-sequencer").addEventListener("click", (e) => {
-//     console.log(e)
-//     // keys.player(detail.row).start(detail.time, 0, "16t");
-// });
-
-
-// document.querySelector('button')?.addEventListener('click', async () => {
-//     await Tone.start()
-//     console.log('audio is ready')
-    // freq in note or pitch-octave, duration, when to play
-
-//     instrument.triggerAttackRelease("C1", '3');
-//     synth.triggerAttackRelease("C4", "8n");
-// })
 
 // Set up the sound players
 const keys = new Tone.Players({
@@ -49,7 +14,9 @@ const keys = new Tone.Players({
   },
   fadeOut: "64n",
   baseUrl: "https://tonejs.github.io/audio/casio/",
-}).toDestination();
+})
+.connect(pitchShifter)
+.toDestination();
 
 // Set up the step sequence
 const numSteps = 6;
@@ -77,10 +44,10 @@ playButton.addEventListener("click", async () => {
     console.log(GLOBAL_STEPS);
     console.log(currentStep);
     
-  await Tone.start();
+    await Tone.start();
     Tone.Transport.stop();
-  Tone.Transport.cancel();
-  Tone.Transport.scheduleRepeat((time) => {
+    Tone.Transport.cancel();
+    Tone.Transport.scheduleRepeat((time) => {
     // Update the current step counter
     // currentStep = (currentStep + 1) % numSteps;
     currentStep = (currentStep % numSteps) + 1;
@@ -89,6 +56,7 @@ playButton.addEventListener("click", async () => {
     activeColumn.forEach((button) => {
         const col = button.dataset.col;
         if (GLOBAL_STEPS[col][currentStep-1]) {
+            // instrument.triggerAttackRelease(col, '8n', time);
             keys.player(col).start(time);
         }
     });
