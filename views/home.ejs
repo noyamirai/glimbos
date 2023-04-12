@@ -4,13 +4,13 @@
     <div id="content">
         <h1>Tones</h1>
 
-        <button id="tone-play-toggle">Start</button>
-        <button id="tone-play-stop">end</button>
+        <button class="hide" data-track-control-btns data-play-btn id="tone-play-toggle">Start</button>
+        <button class="hide" data-track-control-btns data-stop-btn id="tone-play-stop">end</button>
 
         <div class="character-container">
 
-            <% for (let row = 0; row < 6; row++) { %>
-                <div class="character">
+            <% for (let row = 0; row < characterAmount; row++) { %>
+                <div data-character class="character">
                     <%= row + 1 %>
                 </div>
             <% } %>
@@ -18,16 +18,15 @@
         </div>
 
         <div class="container" id="tone-step-sequencer">
-            <% for (let row = 0; row < 6; row++) { %>
-                <div class="column hide <%= row == 5 ? 'column-full' : '' %>">
+            <% for (let row = 0; row < characterAmount; row++) { %>
+                <div data-track class="column hide" <%= row == 5 ? 'data-track-wide' : '' %>>
                     <% if (row == 5) { %>
-                        <div class="track">
+                        <div data-track-block class="track">
 
                         </div>
                     <% } else { %>
-                        <% for (let col = 0; col < 16; col++) { %>
-                            <button class="cell" data-row="<%= row %>" data-col="<%= col %>">
-                                <!-- <%- include ('./partials/characters/character-kitty.ejs') -%> -->
+                        <% for (let col = 0; col < cellAmount; col++) { %>
+                            <button data-track-cell class="cell" data-row="<%= row %>" data-col="<%= col %>">
                             </button>
                         <% } %>
                     <% } %>
@@ -35,7 +34,6 @@
             <% } %>
         </div>
 
-        <!-- <button id="melody">Start melody</button> -->
 
     </div>
 </main>
@@ -97,4 +95,4 @@
 <script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
 
-<script type="module" src="/src/audio.js"></script>
+<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>" data-cell-amount="<%= cellAmount%>"></script>
