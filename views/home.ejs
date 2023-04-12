@@ -19,6 +19,9 @@
 
         <div class="container" id="tone-step-sequencer">
             <% for (let row = 0; row < characterAmount; row++) { %>
+                <!-- <button class="hide" data-track-control-btns data-track-control-for="row" data-play-btn id="tone-play-toggle">Start</button>
+                <button class="hide" data-track-control-btns data-track-control-for="row" data-stop-btn id="tone-play-stop">end</button> -->
+
                 <div data-track class="column hide" <%= row == 5 ? 'data-track-wide' : '' %>>
                     <% if (row == 5) { %>
                         <div data-track-block class="track">

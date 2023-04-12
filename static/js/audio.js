@@ -7,6 +7,7 @@ const bodyEl = document.querySelector('body');
 const characterBtns = document.querySelectorAll('[data-character]');
 const stopButton = document.querySelector("[data-stop-btn]");
 const playButton = document.querySelector("[data-play-btn]");
+const trackControlBtns = document.querySelectorAll('[data-track-control-btns]');
 
 // Get the value of the data attribute as a string
 const characterAmount = script.getAttribute('data-character-amount');
@@ -25,6 +26,9 @@ let GLOBAL_STEPS = initializeSteps();
 let currentStep = 0;
 let melodyPlayer;
 
+// const currentSteps = new Array(parseInt(GLOBAL_NUMSTEPS)).fill(0)
+// console.log(currentSteps);
+
 // Add event listeners to the step buttons
 const stepButtons = document.querySelectorAll("[data-track-cell]");
 stepButtons.forEach((button) => {
@@ -37,6 +41,87 @@ stepButtons.forEach((button) => {
     button.classList.toggle(activeStateClass, GLOBAL_STEPS[row][col]);
   });
 });
+
+// const trackPlayBtns = document.querySelectorAll('[data-play-btn]');
+
+// trackPlayBtns.forEach((trackControlBtn) => {
+//   trackControlBtn.addEventListener('click', async () => {
+//     const buttonForRowIndex = trackControlBtn.getAttribute('data-track-control-for');
+//     const targetPlayer = rules[buttonForRowIndex];
+
+//     console.log(buttonForRowIndex);
+
+//     Tone.Transport.clear(`${buttonForRowIndex}:0`);
+
+//     //  if (Tone.Transport.state === "started") {
+//     //   console.log("The sequencer is already active.");
+//     //   return;
+//     // } 
+
+//     // bodyEl.classList.add('playing');
+//     // const longTrackContainer = document.querySelector('[data-track-wide]');
+    
+//     // if (!longTrackContainer.className.includes('hide')) {
+//     //   activateMelody();
+//     // }
+
+//     await Tone.start();
+//     // Tone.Transport.stop();
+//     // Tone.Transport.cancel();
+    
+//     Tone.Transport.scheduleRepeat(() => {
+
+//       // Update the current step counter
+//       // currentStep = (currentStep % GLOBAL_NUMSTEPS) + 1;
+//       currentSteps[buttonForRowIndex] = (currentSteps[buttonForRowIndex] % GLOBAL_NUMSTEPS) + 1;
+
+//       const allRows = document.querySelectorAll('[data-track]');
+//       const currentRow = allRows[buttonForRowIndex];
+      
+//       if (currentRow.getAttribute('data-track-wide')) {
+//         const longTrack = currentRow.querySelector('[data-track-block]');
+
+//         if (!longTrack.className.includes(activeStateClass)) {
+//           activateMelody();
+//         }
+//       }
+
+//       const button = currentRow.querySelector(`[data-track-cell].${sequenceStartedClass}`);
+
+//       if (button) {
+        
+//         const col = parseInt(button.getAttribute('data-col'));
+//         const row = parseInt(button.getAttribute('data-row'));
+
+//         if (row != 5 && GLOBAL_STEPS[buttonForRowIndex][col]) {
+//           console.log('play sound');
+//           // targetPlayer.player.start();
+//         }
+//       }
+
+//       const allBtns = document.querySelectorAll(`[data-track-cell][data-row="${buttonForRowIndex}"]`);
+      
+//       allBtns.forEach((btn, i) => {
+//         const col = btn.dataset.col;
+
+//         if (buttonForRowIndex==0) {
+//           console.log(currentSteps);
+//         }
+
+//         if (col == currentSteps[buttonForRowIndex]) {
+//           btn.classList.add(sequenceStartedClass)
+//         } else {
+//           btn.classList.remove(sequenceStartedClass)
+//         }
+//       });
+
+//     }, GLOBAL_SPEED, `${buttonForRowIndex}:0`);
+
+//     Tone.Transport.start();
+
+//   });
+// });
+
 
 // Start the step sequencer
 playButton.addEventListener("click", async () => {
@@ -116,7 +201,11 @@ characterBtns.forEach((character, i) => {
       const selectedCharacters = document.querySelectorAll('[data-character].selected');
 
       if (selectedCharacters.length > 0) {
-        btn.classList.remove('hide');
+        // if (btn.getAttribute('data-track-control-for') == i) {
+        //   btn.classList.toggle('hide');
+        // }
+        
+          btn.classList.remove('hide');
       } else {
         btn.classList.add('hide');
         stopPlayer();
