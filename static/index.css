@@ -1,7 +1,55 @@
+/*************/
+/* CSS Reset */
+/*************/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    overflow: auto;
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+    padding: 1rem 2rem;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    text-indent: 0;
+    list-style-type: none;
+}
+
+
+/****************/
+/* Sasja's ding */
+/****************/
 canvas {
     pointer-events: none;
 }
 
+
+/**************/
+/* Ine's worm */
+/**************/
 div.worm.all {
     height: 80dvh;
     display: flex;
@@ -112,7 +160,9 @@ div.worm.bottom::after {
 }
 
 
-
+/*******/
+/* UI  */
+/*******/
 body {
     background-color: #1F4FF6;
     margin: 0 auto;
