@@ -1,6 +1,21 @@
-<div class="character-container">
-    <div class="stand">test</div>
-</div>
-<div class="track-container">
-    <h1>Test</h1>
-</div>
+<main>
+    <div class="character-container">
+        <div class="stand">test</div>
+    </div>
+    <ul class="track-container">
+        <% for (let row=0; row < 6; row++) { %>
+            <li class="track"><%- include ('./partials/track.ejs') -%></li>
+            <% } %>
+    </ul>
+</main>
+<footer>
+    <script>
+        const noContext = document.querySelector("body");
+
+        noContext.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        });
+        
+    </script>
+    <!-- Hier komt logo dingetje -->
+</footer>
