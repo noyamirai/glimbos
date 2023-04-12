@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/noyamirai/glimbos/a7dea04c6f4a76cfb6b9fc75df494cd8b54b1329/public/images/logo_white.svg)
+![logo](https://raw.githubusercontent.com/noyamirai/glimbos/091175ab0b06867e85947f07c822f7f43ccf6f80/public/images/logo_white.svg)
 
 # The official repository for Glimbos! the musical creatures that will keep you entertained and inspired
 
