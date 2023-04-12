@@ -7,38 +7,80 @@
         <button id="tone-play-toggle">Start</button>
         <button id="tone-play-stop">end</button>
 
+        <div class="character-container">
+
+            <% for (let row = 0; row < 6; row++) { %>
+                <div class="character">
+                    <%= row + 1 %>
+                </div>
+            <% } %>
+
+        </div>
+
         <div class="container" id="tone-step-sequencer">
             <% for (let row = 0; row < 6; row++) { %>
-                <div class="column">
-                    <% for (let col = 0; col < 4; col++) { %>
-                        <button class="cell" data-row="<%= row %>" data-col="<%= col %>">
-                            <!-- <%- include ('./partials/characters/character-kitty.ejs') -%> -->
-                        </button>
+                <div class="column hide <%= row == 5 ? 'column-full' : '' %>">
+                    <% if (row == 5) { %>
+                        <div class="track">
+
+                        </div>
+                    <% } else { %>
+                        <% for (let col = 0; col < 16; col++) { %>
+                            <button class="cell" data-row="<%= row %>" data-col="<%= col %>">
+                                <!-- <%- include ('./partials/characters/character-kitty.ejs') -%> -->
+                            </button>
+                        <% } %>
                     <% } %>
                 </div>
             <% } %>
         </div>
 
+        <!-- <button id="melody">Start melody</button> -->
+
     </div>
 </main>
 
 <style>
-    .container {
-        height: 150px;
-        display: flex;
+    .hide {
+        display: none!important;
     }
 
-    .column {
-        flex: 1 1 0%;
+    .character-container {
+        display: flex;
+        height: 100px;
+
+        margin-bottom: 40px;
+        gap: 12px;
+    }
+
+    .character {
+        height: 100%;
+        width: 100px;
+        display: block;
+        background-color: pink;
+    }
+
+    .container {
+        height: 500px;
         display: flex;
         flex-direction: column;
     }
 
-    .column.sequence > .cell {
-        background-color: pink;
+    .column {
+        min-height: 50px;
+        /* flex: 1 1 0%; */
+        display: flex;
     }
 
-    .cell {
+    .cell.sequence {
+        background-color: pink!important;
+    }
+
+    .character.selected {
+        background-color: red;
+    }
+
+    .cell,.track {
         outline: rgb(252, 213, 177) solid 0px;
         margin: 2px;
         flex: 1 1 0%;
@@ -46,7 +88,8 @@
         border: none;
     }
 
-    .cell.active {
+    .cell.active,
+    .track.active {
         background-color: #000;
     }
 </style>

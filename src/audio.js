@@ -1,49 +1,170 @@
-export const pitchShifter = new Tone.PitchShift(0).toDestination();
-pitchShifter.windowSize = 0.01;
+let rules = {};
 
-const octaves = ['a','b','c','d','e','f','g'];
+// const files = {
+//   "0": "/static/samples/snare.wav",
+//   "2": "/static/samples/kick.wav",
+//   "5": "/static/samples/choir.wav", 
+// }
 
-const vocalTones = new Tone.Sampler({
-	urls: {
-    "C4": "12_Beats24-7_AhhAhh (D).wav",
-  },
-	baseUrl: '/static/samples/vocals/'
-})
-	.connect(pitchShifter)
-	.toDestination();
+// async function createFileObject() {
+//   let newFilesObj = {};
 
-// let synth;
-// let notes = {};
-// const instrument = new Tone.Synth().toDestination();
+//   const fileKeys = Object.keys(files);
 
-// fetch("https://api-hitloop.responsible-it.nl/test_json?seed=120")
-//   .then(response => response.json())
-//   .then(midi => {
+//   for (const i of fileKeys) {
+//     const file = files[i];
 
-//     midi.tracks.forEach(track => {
+//     console.log(`Loading file: ${file}`);
 
-//       notes[track.name] = [];
+//     newFilesObj[i] = {};
+//     newFilesObj[i].name = file;
 
-//       // TODO: get categories
-//       console.log(track);
-//       const trackNotes = track.notes
+//     await new Promise((resolve) =>
+//       new Tone.Buffer(
+//         file,
+//         (buffer) => {
+//           const duration = buffer.duration;
+//           newFilesObj[i].duration = duration;
+//           console.log(`Got duration for file: ${file}`);
+//           resolve();
+//         },
+//         (error) => {
+//           console.error(`Error loading file: ${file}`, error);
+//           resolve();
+//         }
+//       )
+//     );
+//   }
 
-//       trackNotes.forEach(note => {
-//         notes[track.name].push({
-//           pitch: note.name,
-//           velocity: note.velocity,
-//           time: note.time,
-//           duration: note.duration,
-//         });
-//       });
-//     });
+//   return newFilesObj;
+// }
 
-//     synth = new Tone.Synth().toDestination();
+// const instruments = new Tone.Sampler({
+//   urls: files, 
+//   onload: async () => {
+//     console.log('loaded instruments');
+    
+//     const newFiles = await createFileObject();
 
-//   });
+//     rules = {
+//       player: instruments,
+//       files: newFiles
+//     }
+//   }
+// });
+
+async function getDuration(file) {
+  let newFilesObj = {};
+
+    console.log(`Loading file: ${file}`);
+
+    newFilesObj.name = file;
+
+    await new Promise((resolve) =>
+      new Tone.Buffer(
+        file,
+        (buffer) => {
+          const duration = buffer.duration;
+          newFilesObj.duration = duration;
+          console.log(`Got duration for file: ${file}`);
+          resolve();
+        },
+        (error) => {
+          console.error(`Error loading file: ${file}`, error);
+          resolve();
+        }
+      )
+    );
+
+  return newFilesObj;
+}
+
+const snare = new Tone.Player({
+    url: '/static/samples/snare.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/snare.wav');
+
+      rules[0] = {
+        player: snare,
+        file: newFileObj
+      }
+      console.log('loaded snare');
+    }
+}).toDestination();
+
+const vis = new Tone.Player({
+    url: '/static/samples/vis.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/vis.wav');
+
+      rules[1] = {
+        player: vis,
+        file: newFileObj
+      }
+      console.log('loaded vis');
+    }
+}).toDestination();
+
+const kick = new Tone.Player({
+    url: '/static/samples/kick.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/kick.wav');
+
+      rules[2] = {
+        player: kick,
+        file: newFileObj
+      }
+      console.log('loaded kick');
+    }
+}).toDestination();
+
+const choir = new Tone.Player({
+    url: '/static/samples/choir.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/choir.wav');
+
+      rules[3] = {
+        player: choir,
+        file: newFileObj
+      }
+      console.log('loaded choir');
+    }
+}).toDestination();
+
+const cat = new Tone.Player({
+    url: '/static/samples/cat.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/cat.wav');
+
+      rules[4] = {
+        player: cat,
+        file: newFileObj
+      }
+      console.log('loaded cat');
+    }
+}).toDestination();
+
+const melody = new Tone.Player({
+    url: '/static/samples/melody.wav',
+    onload: async () => {
+
+      const newFileObj = await getDuration('/static/samples/melody.wav');
+
+      rules[5] = {
+        player: melody,
+        file: newFileObj
+      }
+      console.log('loaded melody');
+    }
+}).toDestination();
 
 // Set up the step sequence
-const numSteps = 6;
+const numSteps = 16;
 let GLOBAL_STEPS = initializeSteps();
 
 // Set up the current step counter
@@ -56,89 +177,158 @@ stepButtons.forEach((button) => {
   const row = button.dataset.row;
 
   button.addEventListener("click", () => {
-    GLOBAL_STEPS[col][row] = !GLOBAL_STEPS[col][row];
+    GLOBAL_STEPS[row][col] = !GLOBAL_STEPS[row][col];
     console.log(GLOBAL_STEPS);
-    button.classList.toggle("active", GLOBAL_STEPS[col][row]);
+    button.classList.toggle("active", GLOBAL_STEPS[row][col]);
   });
 });
 
 // Start the step sequencer
 const playButton = document.querySelector("#tone-play-toggle");
 playButton.addEventListener("click", async () => {
+
+  const longTrackContainer = document.querySelector('.column:last-of-type');
+  
+  if (!longTrackContainer.className.includes('hide')) {
+    activateMelody();
+  }
+
   await Tone.start();
   Tone.Transport.stop();
   Tone.Transport.cancel();
 
   Tone.Transport.scheduleRepeat((time) => {
-    console.log('hi');
       // Update the current step counter
       currentStep = (currentStep % numSteps) + 1;
-      const activeColumn = document.querySelectorAll(`.cell[data-row="${currentStep-1}"]`);
-      activeColumn.forEach((button) => {
-          const col = button.dataset.col;
 
-          if (GLOBAL_STEPS[col][currentStep-1]) {
-            const selectedOctave = octaves[currentStep-1];
-            const pitch = `${selectedOctave.toUpperCase()}${col}`;
-            let duration;
-            const buffer = new Tone.Buffer("/static/samples/vocals/12_Beats24-7_AhhAhh (D).wav", () => {
-              // get the duration of the WAV file in seconds
-              duration = buffer.duration;
+      const allColumns = document.querySelectorAll('.column:not(.hide)');
 
-              vocalTones.triggerAttackRelease('C4', duration, time);
-            });
-            
-            // const event = notes[Object.keys(notes)[col]][currentStep-1];
-            // console.log(event);
+      allColumns.forEach(async (column, i) => {
+        
+        if (column.className.includes('column-full')) {
+          const longTrack = column.querySelector('.track');
 
-            // synth.triggerAttackRelease(event.pitch, event.duration, event.time);
-            // synth.triggerAttackRelease(event.pitch, '8n', time);
-            // vocalTones.triggerAttackRelease('C4', '8n', time);
-
-            // OLD:
-            // instrument.triggerAttackRelease(pitch, '8n', time);
-            // instrument.player(col).start(time);
+          if (!longTrack.className.includes('active')) {
+            activateMelody();
           }
+        }
+
+        const button = column.querySelector('.cell.sequence');
+
+        if (button) {
+          
+          const col = parseInt(button.getAttribute('data-col'));
+          const row = parseInt(button.getAttribute('data-row'));
+    
+          if (row != 5 && GLOBAL_STEPS[row][col]) {
+            console.log('active');
+            // const selectedOctave = octaves[currentStep-1];
+            // const pitch = `${selectedOctave.toUpperCase()}${col}`;
+
+            // const event = notes[Object.keys(notes)[0]][0];
+            // console.log(event);
+            // synth.triggerAttackRelease(event.pitch, '8n', time);
+  
+            // let duration;
+            // console.log(rules);
+            // console.log(rules.files[row]);
+            // console.log(rules[row]);
+            // console.log(rules.player);
+
+
+            // rules.player.triggerAttackRelease(row, rules.files[row].duration, time);
+  
+            // new Tone.Buffer(rules.files[row].name, () => {
+              // get the duration of the WAV file in seconds
+              // duration = buffer.duration;
+              rules[row].player.start();
+              // rules.player.triggerAttackRelease('row', rules.files[row].duration, time);
+            // });
+          }
+        }
+
+      })
+
+      const allBtns = document.querySelectorAll(`.cell`);
+      allBtns.forEach((btn, i) => {
+        const col = btn.dataset.col;
+
+        if (col == currentStep-1) {
+          btn.classList.add("sequence")
+        } else {
+          btn.classList.remove("sequence")
+
+        }
       });
 
-      // Indicate which column is active
-      const columns = document.querySelectorAll(".column");
-      columns.forEach((column, i) => {
-          column.classList.toggle("sequence", i == (currentStep-1));
-      });
-
-    }, "6n");
+    }, "10n");
 
     Tone.Transport.start();
 });
+
+let melodyPlayer;
 
 // Stop the step sequencer
 const stopButton = document.querySelector("#tone-play-stop");
 stopButton.addEventListener("click", async () => {
 
-    Tone.Transport.stop();
-    currentStep = 0;
-    GLOBAL_STEPS = initializeSteps();
+  Tone.Transport.stop();
+  Tone.Transport.cancel();
 
-    const columns = document.querySelectorAll(".column");
+  if (melodyPlayer && melodyPlayer.state === "started") {
+    console.log("The player is active.");
+    melodyPlayer.stop();
+  } 
 
-    columns.forEach((column) => {
-        column.classList.remove("sequence");
-    });
-    stepButtons.forEach((button) => {
-        button.classList.remove("active");
-    });
+  // TODO: remove styling
+  currentStep = 0;
+  GLOBAL_STEPS = initializeSteps();
+
+
+  stepButtons.forEach((button) => {
+      button.classList.remove("active");
+      button.classList.remove("sequence");
+  });
 });
 
 function initializeSteps() {
     const steps = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 6; i++) {
         steps.push(new Array(numSteps).fill(false));
     }
 
     return steps;
 }
 
-function randomVelocity () {
-		return (Math.random() * 0.5 + 0.5) * 0.8;
-	};
+function activateMelody () {
+  console.log('true');
+  const longTrack = document.querySelector('.track');
+  
+    longTrack.classList.add('active');
+    melodyPlayer = new Tone.Player({
+        url: '/static/samples/melody.wav',
+        loop: true,
+        onload: () => {
+            console.log('start melody');
+            melodyPlayer.start();
+        }
+    }).toDestination();
+}
+
+const characterBtns = document.querySelectorAll('.character');
+
+characterBtns.forEach((character, i) => {
+
+  character.addEventListener('click', () => {
+  
+    character.classList.toggle("selected");
+  
+    const allColumns = document.querySelectorAll('.column');
+    allColumns[i].classList.toggle('hide');
+  
+    return;
+
+  })
+
+  
+});
