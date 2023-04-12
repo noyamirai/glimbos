@@ -1,0 +1,77 @@
+/**********/
+/* Eyeguy */
+/**********/
+.eyeguy {
+    position: relative;
+    height: 16.5rem;
+    width: 16.5rem;
+}
+
+.eyeguy>svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.eyeguy>.eye {
+    background-color: white;
+    border: .3rem solid #904a9a;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 2rem;
+}
+
+.eyeguy>.eye:nth-of-type(2) {
+    right: 2rem;
+    left: auto;
+}
+
+.eyeguy>.eye:after {
+    content: "";
+    height: .9rem;
+    width: .9rem;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    display: block;
+    border-radius: 50%;
+    top: 2rem;
+    left: 1.5rem;
+}
+
+.eyeguy>.eye:nth-of-type(2):after {
+    right: 1.5rem;
+    left: auto;
+}
+
+.eyeguy>.mouth {
+    width: 1.5rem;
+    height: 0rem;
+    border: .15rem solid #722f7c;
+    border-radius: 1rem;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    transform: translate(-50%);
+    transition: height 2s ease-in-out;
+}
+
+.active .eyeguy>.eye:after {
+    right: 1rem;
+    left: initial;
+}
+
+.active .eyeguy>.eye:nth-of-type(2):after {
+    left: 1rem;
+    right: initial;
+}
+
+.active .eyeguy>.mouth {
+    height: 2rem;
+    border-radius: 4em;
+    background-color: #e684ba;
+    border-width: .25rem;
+}
