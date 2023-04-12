@@ -16,4 +16,12 @@ homeRouter.get('/sas', async (req, res) => {
     });
 });
 
+
+homeRouter.get('/pip', async (req, res) => {
+    res.render('layout', {
+        'view': 'blanco',
+        'partial': './partials/characters/character-eyeguy',
+    });
+});
+
 export default homeRouter;
