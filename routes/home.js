@@ -16,4 +16,11 @@ homeRouter.get('/sas', async (req, res) => {
     });
 });
 
+homeRouter.get('/ine', async (req, res) => {
+    res.render('layout', {
+        'view': 'blanco',
+        'partial': './partials/characters/character-worm',
+    });
+});
+
 export default homeRouter;
