@@ -23,4 +23,10 @@ homeRouter.get('/ine', async (req, res) => {
     });
 });
 
+homeRouter.get('/ui', async (req, res) => {
+    res.render('layout', {
+        'view': 'ui',
+    });
+});
+
 export default homeRouter;

@@ -7,17 +7,17 @@ div.worm.all {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-  }
-  
-  div.worm.head {
+}
+
+div.worm.head {
     width: 10em;
     height: 10em;
     border-radius: 50% 50% 0 0;
     background: #1FA8C7;
     position: relative;
-  }
-  
-  div.worm.head::before {
+}
+
+div.worm.head::before {
     content: '';
     width: 10em;
     height: 7em;
@@ -25,10 +25,10 @@ div.worm.all {
     background: radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 2.5em) 2em -2em, radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 3em) -2em -2em;
     position: absolute;
     top: 2.2em;
-  }
-  
-  div.worm.head .eyes,
-  div.worm.head .eyes::before {
+}
+
+div.worm.head .eyes,
+div.worm.head .eyes::before {
     width: 2.2em;
     height: 0;
     border-radius: 50% 50% 10% 10%;
@@ -37,24 +37,24 @@ div.worm.all {
     top: 2.5em;
     left: 1.9em;
     animation: knipperen 4s 2s infinite;
-  }
-  
-  div.worm.head .eyes::before {
+}
+
+div.worm.head .eyes::before {
     content: '';
     top: 0;
     left: 4em;
-  }
-  
-  @keyframes knipperen {
+}
+
+@keyframes knipperen {
     0%, 30%, 100% {
-      height: 0;
+        height: 0;
     }
     15% {
-      height: 2.3em;
+        height: 2.3em;
     }
-  }
-  
-  div.worm.head .mouth {
+}
+
+div.worm.head .mouth {
     width: 5em;
     height: 1.5em;
     border-radius: 1em;
@@ -63,14 +63,14 @@ div.worm.all {
     top: 6em;
     left: 2.5em;
     transition: height 2s ease-in-out;
-  }
-  
-  .active div.worm.head .mond {
+}
+
+.active div.worm.head .mouth {
     height: 6em;
     border-radius: 4em;
-  }
-  
-  div.worm.body {
+}
+
+div.worm.body {
     width: 10em;
     height: 2em;
     background: #1FA8C7;
@@ -78,13 +78,13 @@ div.worm.all {
     position: relative;
     bottom: 0;
     z-index: -1;
-  }
-  
-  .active div.worm.body {
+}
+
+.active div.worm.body {
     height: 20em;
-  }
-  
-  div.worm.bottom {
+}
+
+div.worm.bottom {
     width: 10em;
     height: 2em;
     border: 0;
@@ -92,10 +92,10 @@ div.worm.all {
     background: #1FA8C7;
     position: relative;
     top: 0;
-  }
-  
-  div.worm.bottom::before,
-  div.worm.bottom::after {
+}
+
+div.worm.bottom::before,
+div.worm.bottom::after {
     content: '';
     width: 2.5em;
     height: 3em;
@@ -104,9 +104,30 @@ div.worm.all {
     position: absolute;
     left: 1.5em;
     bottom: -0.8em;
-  }
-  
-  div.worm.bottom::after {
+}
+
+div.worm.bottom::after {
     left: inherit;
     right: 1.5em;
-  }
+}
+
+
+
+body {
+    background-color: #1F4FF6;
+    margin: 0 auto;
+}
+
+.character-container {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.character-container .stand{
+    width: 100%;
+    height: 3.125rem;
+    border: .125rem solid #000;
+    border-radius: .75rem;
+    background-color: #fff;
+    box-shadow: .1875rem .1875rem 0 0 rgba(0,0,0);
+}
