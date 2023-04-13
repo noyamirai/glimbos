@@ -61,6 +61,12 @@ button {
     display: none !important;
 }
 
+.trackcontrols {
+    position: fixed;
+    top: 1rem;
+    z-index: 50000;
+}
+
 .btn--play,
 .btn--stop {
     width: 2.75rem;
@@ -369,7 +375,7 @@ p {
 }
 
 .btn--cell.sequence {
-    background-color: rgb(85, 215, 255);
+    background-color: rgb(85, 215, 255)!important;
 }
 
 .btn--cell.active {
