@@ -24,9 +24,11 @@ On Teusday we discussed what we were going to do and what we wanted to make, we 
 
 **Design 1**
 ![First version](https://user-images.githubusercontent.com/43877754/231773181-7283c61c-27a6-499c-8eb8-b2e0b659fbab.jpg)
+This design felt a little boring, so in the next design we added some doodles in the background. This makes it more playfull. For the users was it not clear that you could click on the creatures, so we also added a click us.
 
 **Design 2**
 ![Second version](https://user-images.githubusercontent.com/43877754/231773399-a70729e9-2e40-4bed-b8d3-d71350cf7d3d.jpg)
+We got feedback on this design that the blue background color was too bold for the eyes. So we changed it to a dark gray color. With this color the creatures more attention.
 
 **Design Variation**
 ![Other version](https://user-images.githubusercontent.com/43877754/231773719-760e96f8-ec7c-467c-aef9-3ac99bdcbd97.jpg)
@@ -35,6 +37,7 @@ On Teusday we discussed what we were going to do and what we wanted to make, we 
 ![Final version](https://user-images.githubusercontent.com/43877754/231774224-910a382f-35f2-4b7a-b340-b12d0bf95e3e.jpg)
 
 **Mobile/tablet verion**
+
 ![Mobile and tablet design](https://user-images.githubusercontent.com/43877754/231774398-7c70d77d-e54b-4b0a-abd5-1516da906730.jpg)
 
 ## Tasks
