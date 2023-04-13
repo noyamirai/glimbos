@@ -146,6 +146,8 @@ playButton.addEventListener("click", async () => {
 characterBtns.forEach((character, i) => {
 
   character.addEventListener('click', () => {
+
+    const characterType = character.getAttribute('data-character-type');
   
     character.classList.toggle("selected");
 
@@ -164,11 +166,9 @@ characterBtns.forEach((character, i) => {
     const allColumns = document.querySelectorAll('[data-track]');
     allColumns[i].classList.toggle('hide');
 
-    
-
 
     // melody
-    if (i == 5 && bodyEl.className.includes('playing')) {
+    if (characterType == 'eyeguy' && character.className.includes('selected') && bodyEl.className.includes('playing')) {
       activateMelody();
     }
   

@@ -61,7 +61,7 @@ button {
     display: none!important;
 }
 
-.play, .stop {
+.btn--play, .btn--stop {
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.5rem;
@@ -72,12 +72,12 @@ button {
     position: relative;
 }
 
-.play {
+.btn--play {
     margin-right: 0.5rem;
 }
 
-.play::before,
-.stop::before {
+.btn--play::before,
+.btn--stop::before {
     content: '';
     width: 1.25rem;
     height: 1.5625rem;
@@ -91,7 +91,7 @@ button {
     transform: translate(-50%, -50%);
 }
 
-.play::before {
+.btn--play::before {
     background-image: url("/images/play.svg");
 }
 
@@ -275,7 +275,7 @@ div.worm.head .mouth {
     transition: height 1s ease-in-out;
 }
 
-.squence div.worm.head .mouth {
+.worm.sequence div.worm.head .mouth {
     height: 6em;
     border-radius: 4em;
 }
@@ -290,7 +290,7 @@ div.worm.body {
     z-index: -1;
 }
 
-.squence div.worm.body {
+.worm.sequence div.worm.body {
     height: 12em;
 }
 
@@ -560,17 +560,17 @@ div.worm.bottom::after {
     z-index: 12;
 }
 
-body.playing .eyeguy>div>.eye:after {
+body.playing .eyeguy.selected>div>.eye:after {
     right: 1rem;
     left: initial;
 }
 
-body.playing .eyeguy>div>.eye:nth-of-type(2):after {
+body.playing .eyeguy.selected>div>.eye:nth-of-type(2):after {
     left: 1rem;
     right: initial;
 }
 
-body.playing .eyeguy .mouth {
+body.playing .eyeguy.selected .mouth {
     animation: mouth 500ms linear forwards;
 
     border-radius: 4em;
