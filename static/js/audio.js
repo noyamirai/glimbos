@@ -189,6 +189,18 @@ characterBtns.forEach((character, i) => {
     if (characterType == 'eyeguy' && character.className.includes('selected') && bodyEl.className.includes('playing')) {
       activateMelody();
     }
+
+    // @CHRIS!!!!!
+    if (characterType == 'langert') {
+      const imageEl = character.querySelector('img');
+
+      if (character.className.includes('selected')) {
+        imageEl.src = '/static/images/langert_yell.png';
+      } else {
+        imageEl.src = '/static/images/langert.png';
+      }
+      
+    }
   
     return;
 
