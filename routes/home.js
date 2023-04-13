@@ -16,4 +16,17 @@ homeRouter.get('/sas', async (req, res) => {
     });
 });
 
+homeRouter.get('/ine', async (req, res) => {
+    res.render('layout', {
+        'view': 'blanco',
+        'partial': './partials/characters/character-worm',
+    });
+});
+
+homeRouter.get('/ui', async (req, res) => {
+    res.render('layout', {
+        'view': 'ui',
+    });
+});
+
 export default homeRouter;
