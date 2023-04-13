@@ -225,28 +225,42 @@ p {
     object-position: bottom;
 }
 
-.track--langert .btn--cell.active {
+.track--langert .btn--cell.active,
+.track--langert .icon-container {
     background-color: var(--accent-color1);
 }
 
 .track--kitty .btn--cell.active {
     background-color: var(--accent-color2);
 }
+.track--kitty .icon-container {
+    background-color: #c55cff;
+}
+
 
 .track--vis .btn--cell.active {
     background-color: var(--accent-color3);
 }
+.track--vis .icon-container {
+    background-color: #ffeb74;
+}
 
-.track--worm .btn--cell.active {
+.track--worm .btn--cell.active,
+.track--worm .icon-container {
     background-color: var(--accent-color4);
 }
 
-.track--blob .btn--cell.active {
+.track--blob .btn--cell.active,
+.track--blob .icon-container {
     background-color: var(--accent-color5);
 }
 
 .track--eyeguy .btn--cell.active {
     background-color: var(--accent-color6);
+}
+.track--eyeguy .icon-container {
+    
+    background-color: #ffd5f4;
 }
 
 /*****************/
