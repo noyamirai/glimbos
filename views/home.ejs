@@ -18,10 +18,10 @@
 
         <ul class="track-container">
             <% for (let row=0 ; row < characterAmount; row++) { %>
-                <li data-track class="track hide" <%=row==5 ? 'data-track-wide' : '' %>>
+                <li data-track class="track hide" <%= typeof characterObject[row] !== undefined && characterObject[row] ? (characterObject[row].type == "eyeguy" ? 'data-track-wide' : '') : '' %>>
                     <img src="/static/images/Ellipse 1.svg">
 
-                    <% if (row==5) { %>
+                    <% if (typeof characterObject[row] !== undefined && characterObject[row]  && characterObject[row].type == "eyeguy") { %>
                         <%- include ('./partials/button.ejs', { btnType: "cell--full" }) -%>
                     <% } else { %>
                         <div class="btn-container">

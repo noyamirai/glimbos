@@ -77,6 +77,8 @@ button {
 
     --font-headers: 'InterBold', sans-serif;
     --font-paragraphs: 'InterRegular', sans-serif;
+
+    --audioDuration: .5;
 }
 
 
@@ -373,7 +375,7 @@ div.worm.bottom::after {
     position: absolute;
 }
 
-.selected .eyeguy>div{
+.eyeguy.selected>div{
     animation: bounce 1s linear infinite;
 }
 
@@ -468,25 +470,44 @@ div.worm.bottom::after {
     top: 4rem;
     left: 50%;
     transform: translate(-50%);
-    transition: height 2s ease-in-out;
+    background-color: #e684ba;
+    /* transition: height 500ms ease-in-out; */
     z-index: 12;
 }
 
-.sequence .eyeguy>div>.eye:after {
+body.playing .eyeguy>div>.eye:after {
     right: 1rem;
     left: initial;
 }
 
-.sequence .eyeguy>div>.eye:nth-of-type(2):after {
+body.playing .eyeguy>div>.eye:nth-of-type(2):after {
     left: 1rem;
     right: initial;
 }
 
-.sequence .eyeguy>div>.mouth {
-    height: 2rem;
+body.playing .eyeguy .mouth {
+    animation: mouth 500ms linear forwards;
+
     border-radius: 4em;
     background-color: #e684ba;
     border-width: .25rem;
+}
+/* .stand:has(:not(.eyeguy.sequence)) .eyeguy .mouth {
+    animation: mouth 3s linear reverse;
+
+    border-radius: 4em;
+    background-color: #e684ba;
+    border-width: .25rem;
+} */
+
+@keyframes mouth {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 5rem;
+    }
 }
 
 
@@ -541,7 +562,8 @@ div.worm.bottom::after {
         height: 0rem;
 
 
-
+    }
+}
 /***********/
 /* Devices */
 /***********/

@@ -124,6 +124,7 @@ playButton.addEventListener("click", async () => {
           }
   
         } else if (!seqBtn.className.includes(activeStateClass) && (currentStep-1) > activeSeq) {
+        
           characterBtns[row].classList.remove(sequenceStartedClass);
 
           if (characterType == 'langert') {

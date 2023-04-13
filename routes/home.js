@@ -50,6 +50,7 @@ homeRouter.get('/pip', async (req, res) => {
     res.render('layout', {
         'view': 'blanco',
         'partial': './partials/characters/character-eyeguy',
+}); });
 
 homeRouter.get('/ine', async (req, res) => {
     res.render('layout', {
