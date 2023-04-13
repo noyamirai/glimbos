@@ -53,6 +53,7 @@ playButton.addEventListener("click", async () => {
     return;
   } 
 
+  playButton.classList.add('clicked');
   bodyEl.classList.add('playing');
   const longTrackContainer = document.querySelector('[data-track-wide]');
   
@@ -174,6 +175,7 @@ characterBtns.forEach((character, i) => {
       if (selectedCharacters.length > 0) {
           btn.classList.remove('hide');
       } else {
+        playButton.classList.remove('clicked');
         btn.classList.add('hide');
         stopPlayer();
       }
@@ -187,6 +189,18 @@ characterBtns.forEach((character, i) => {
     if (characterType == 'eyeguy' && character.className.includes('selected') && bodyEl.className.includes('playing')) {
       activateMelody();
     }
+
+    // @CHRIS!!!!!
+    if (characterType == 'langert') {
+      const imageEl = character.querySelector('img');
+
+      if (character.className.includes('selected')) {
+        imageEl.src = '/static/images/langert_yell.png';
+      } else {
+        imageEl.src = '/static/images/langert.png';
+      }
+      
+    }
   
     return;
 
@@ -195,14 +209,50 @@ characterBtns.forEach((character, i) => {
   
 });
 
+const undoButtons = document.querySelectorAll('[data-track-undo]');
+undoButtons.forEach((btn, i) => {
+
+  btn.addEventListener('click', () => {
+
+    const dataTracks = document.querySelectorAll('[data-track]');
+    dataTracks[i].classList.add('hide');
+    characterBtns[i].classList.remove('sequence');
+    characterBtns[i].classList.remove('selected');
+    characterBtns[i].classList.remove('active');
+
+    const cellsOfTrack = dataTracks[i].querySelectorAll('[data-track-cell]')
+    cellsOfTrack.forEach(cell => {
+      cell.classList.remove('active');
+    });
+
+      const selectedCharacters = document.querySelectorAll('[data-character].selected');
+
+      if (selectedCharacters.length == 0) {
+        stopButton.classList.add('hide');
+        playButton.classList.add('hide');
+        playButton.classList.remove('clicked');
+        stopPlayer();
+      } 
+
+  });
+
+})
+
 // Stop the step sequencer
 stopButton.addEventListener("click", async () => {
+  playButton.classList.remove('clicked');
   stopPlayer();
 });
 
 function stopPlayer() {
 
   bodyEl.classList.remove('playing');
+
+  characterBtns.forEach((characterBtn) => {
+    characterBtn.classList.remove(activeStateClass)
+    characterBtn.classList.remove(sequenceStartedClass)
+  })
+
 
   Tone.Transport.stop();
   Tone.Transport.cancel();
