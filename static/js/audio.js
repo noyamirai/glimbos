@@ -16,7 +16,7 @@ const activeStateClass = 'active';
 const sequenceStartedClass = 'sequence';
 
 const GLOBAL_NUMSTEPS = trackCellAmount;
-const GLOBAL_SPEED = '8n';
+const GLOBAL_SPEED = '10n';
 
 // Set up the step sequence
 let GLOBAL_STEPS = initializeSteps();
@@ -96,18 +96,6 @@ playButton.addEventListener("click", async () => {
               rules[buttonRow].player.start();
             }
             
-            //   const col = parseInt(button.getAttribute('data-col'));
-            //   const row = parseInt(button.getAttribute('data-row'));
-    
-            //   console.log('current col?');
-            //   console.log(col);
-              
-        
-            //   if (row != 5 && GLOBAL_STEPS[row][col]) {
-            //     console.log(GLOBAL_STEPS);
-            //     console.log('play sound');
-            //     rules[row].player.start();
-            //   }
             }
     
           })
@@ -120,17 +108,28 @@ playButton.addEventListener("click", async () => {
       const allOtherBtns = document.querySelectorAll(`[data-track-cell]:not([data-col="${currentStep-1}"])`);
 
       seqBtns.forEach(seqBtn => {
-        
         seqBtn.classList.add(sequenceStartedClass);
         const row = seqBtn.getAttribute('data-row');
+        const character = characterBtns[row];
+        const characterType = character.getAttribute('data-character-type');
   
         if (seqBtn.className.includes(activeStateClass)) {
           activeSeq = currentStep-1
-          console.log('start cat animation');
+          console.log('start animation');
           characterBtns[row].classList.add(sequenceStartedClass);
+
+          if (characterType == 'langert') {
+            const imageEl = character.querySelector('img');
+            imageEl.src = '/static/images/langert_yell.png';
+          }
   
         } else if (!seqBtn.className.includes(activeStateClass) && (currentStep-1) > activeSeq) {
           characterBtns[row].classList.remove(sequenceStartedClass);
+
+          if (characterType == 'langert') {
+            const imageEl = character.querySelector('img');
+            imageEl.src = '/static/images/langert.png';
+          }
         }
       });
 

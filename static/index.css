@@ -245,6 +245,18 @@ div.worm.bottom::after {
     width: 100%;
 }
 
+.character picture {
+    width: 100%;
+    height: 100%;
+}
+
+    .character picture > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom;
+    }
+
 
 /*****************/
 /* Character bar */
