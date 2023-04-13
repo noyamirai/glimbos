@@ -352,6 +352,7 @@ p {
     padding: .5rem 1rem;
     height: 4rem;
     gap: 1rem;
+    box-shadow: 0.1875rem 0.1875rem 0 0 var(--accent-color7);
 }
 
 /* Character icon */
@@ -361,6 +362,7 @@ p {
     width: 3rem;
     background-color: var(--accent-color1);
     aspect-ratio: 1/1;
+    box-shadow: 0.1875rem 0.1875rem 0 0 var(--background-color);
 }
 
 .icon-image {
