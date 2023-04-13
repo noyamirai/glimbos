@@ -31,6 +31,8 @@ There is no endgoal, no challenge and no tasks, with Glimbos its all about relax
 ![image](https://user-images.githubusercontent.com/90341211/231725205-5321ea3f-e888-479a-a7d3-d235914ef6a2.png)
 ![image](https://user-images.githubusercontent.com/90341211/231725228-27c73f41-26bf-48b5-9c4d-1b92725fdcb6.png)
 ![image](https://user-images.githubusercontent.com/90341211/231725252-2366419a-fc39-4a77-9640-5d7d7764ca7a.png)
+![image](https://user-images.githubusercontent.com/43877754/231768415-0bbf43c5-a9c3-4436-87c9-50804319d74b.jpeg)
+![image](https://user-images.githubusercontent.com/43877754/231768340-58578a96-cdc3-4b40-99af-d8ae33233c35.jpeg)
 
 ## Test
 
