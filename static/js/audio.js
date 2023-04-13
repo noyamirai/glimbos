@@ -70,6 +70,14 @@ playButton.addEventListener("click", async () => {
       currentStep = (currentStep % GLOBAL_NUMSTEPS) + 1;
       console.log('START SEQ');
       console.log(currentStep);
+    
+      if (currentStep==1) {
+        
+        characterBtns.forEach((characterBtn) => {
+          characterBtn.classList.remove(sequenceStartedClass)
+        })
+      }
+
       const allColumns = document.querySelectorAll('[data-track]:not(.hide)');
 
       // console.log('LOOP THRU COLS -> set sound');

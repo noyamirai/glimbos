@@ -91,11 +91,11 @@
 // }
 
 const samples = [
-  '/static/samples/cat.wav',
   '/static/samples/snare.wav',
+  '/static/samples/cat.wav',
   '/static/samples/vis.wav',
-  '/static/samples/kick.wav',
   '/static/samples/choir.wav',
+  '/static/samples/kick.wav',
   '/static/samples/melody.wav',
 ];
 

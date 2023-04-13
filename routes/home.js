@@ -10,12 +10,19 @@ const __dirname = path.dirname(__filename);
 
 const homeRouter = express.Router();
 
+// chris, sasja, mayla , ine ,pip, michel
+
 async function getFileNames(directoryPath) {
   try {
     let result = {}
     const files = await fsPromise.readdir(directoryPath);
     const fileNames = files.map((file, i) => {
-        const fileType = file.split('-')[1].split('.')[0];
+        const fileType = file.split("-")[2].split('.')[0];
+        // const fileType = arr[2]; // "langert"
+
+        // console.log(arr);
+        // const fileType = file.split('-')[1].split('.')[0];
+        console.log(fileType);
         return  { name: file, type: fileType };
     });
 

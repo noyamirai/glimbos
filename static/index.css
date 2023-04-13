@@ -484,54 +484,29 @@ div.worm.bottom::after {
     align-self: center;
     background-color: black;
     width: 75px;
-    height: 7px;
+    height: 30px;
     border-radius: 7px 7px 100px 100px;
     transform-origin: center;
-    animation: blobMouthResize 1s forwards ease-out;
-
 }
 
-@keyframes blobMouthResize {
-    from {
-        height: 0px;
-    }
-    to {
-        height: 30px;
-    }
-}
-
-@keyframes blobStartSinging {
-    0% {
-        height: 60px;
-        width: 155px;
-        border-radius: 7px 7px 100px 100px;
-    }
-    50% {
-        height: 0px;
-        width: 0px;
-        border-radius: 7px 7px 100px 100px;
-    }
-    100% {
-        width: 105px;
-        height: 60px;
-        border-radius: 50%;
-    }
+.blob.sequence .blob-mouth {
+    animation: blobSinging 1s infinite ease-out;
 }
 
 @keyframes blobSinging {
     0% {
-        width: 105px;
-        height: 60px;
+        width: 55px;
+        height: 30px;
         border-radius: 50%;
     }
     50% {
-        width: 115px;
-        height: 70px;
+        width: 55px;
+        height: 40px;
         border-radius: 50%;
     }
     100% {
-        width: 105px;
-        height: 60px;
+        width: 55px;
+        height: 30px;
         border-radius: 50%;
     }
 }
