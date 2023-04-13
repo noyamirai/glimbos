@@ -331,6 +331,14 @@ div.worm.bottom::after {
     border: none;
 }
 
+.btn--cell.sequence {
+    background-color: pink;
+}
+
+.btn--cell.active {
+    background-color: blue;
+}
+
 /* Delete track button */
 .btn--undo{
     padding: 0 .5rem;
