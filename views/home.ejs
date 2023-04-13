@@ -99,13 +99,21 @@
 </style> -->
 
 <script>
-    const noContext = document.querySelector("body");
+        const noContext = document.querySelector("body");
 
-    noContext.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
+        noContext.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        });
 
-</script>
+        document.addEventListener('touchstart', function(e) {
+            console.log('touch!');
+            // if (e.touches.length === 2) {
+            //     // store the positions of the two touch points
+            //     touchStartPos = [e.touches[0].pageX, e.touches[0].pageY, e.touches[1].pageX, e.touches[1].pageY];
+            // }
+            });
+
+    </script>
 
 <script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
