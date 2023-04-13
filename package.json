@@ -25,6 +25,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
+    "fs.promises": "^0.1.2",
     "tone": "^14.7.77"
   },
   "devDependencies": {

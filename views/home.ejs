@@ -2,37 +2,45 @@
 
     <%- include ('./partials/button.ejs', { btnType: "controls" }) -%>
 
-    <div class="character-container">
-        <div class="stand">
-            <% for (let row = 0; row < characterAmount; row++) { %>
-                <div data-character class="character cat"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
-            <% } %>
-        </div>
-    </div>
+        <div class="character-container">
+            <div class="stand">
+                <% for (let row=0; row < characterAmount; row++) { %>
 
-    <ul class="track-container">
-        <% for (let row=0 ; row < characterAmount; row++) { %>
-            <li data-track class="track hide" <%= row == 5 ? 'data-track-wide' : '' %>>
-                <img src="/static/images/Ellipse 1.svg">
-                
-                <% if (row == 5) { %>
-                    <%- include ('./partials/button.ejs', { btnType: "cell--full"}) -%>
-                <% } else { %>
-                    <% for (let col = 0; col < cellAmount; col++) { %>
-                        <%- include ('./partials/button.ejs', { btnType: "cell", row: row, col: col}) -%>
+                    <% if (characterObject[row]) { %>
+                        <div data-character data-character-type="<%= characterObject[row].type %>" class="character <%= characterObject[row].type %>"> <%- include (`./partials/characters/${characterObject[row].name}`)-%> </div>
+                    <% } else { %>
+                        <div data-character class="character worm"> <%- include ('./partials/characters/character-worm.ejs')-%> </div>
                     <% } %>
+
                 <% } %>
-                
-                <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
-            </li>
+            </div>
+        </div>
 
-        <% } %>
-    </ul>
+        <ul class="track-container">
+            <% for (let row=0 ; row < characterAmount; row++) { %>
+                <li data-track class="track hide" <%= typeof characterObject[row] !== undefined && characterObject[row] ? (characterObject[row].type == "eyeguy" ? 'data-track-wide' : '') : '' %>>
+                    <img src="/static/images/Ellipse 1.svg">
 
-    <section class="mobile-text">
-        <h1>We don’t support mobile devices</h1>
-        <p>Please open this site on a larger device</p>
-    </section>
+                    <% if (typeof characterObject[row] !== undefined && characterObject[row]  && characterObject[row].type == "eyeguy") { %>
+                        <%- include ('./partials/button.ejs', { btnType: "cell--full" }) -%>
+                    <% } else { %>
+                        <div class="btn-container">
+                            <% for (let col=0; col < cellAmount; col++) { %>
+                                <%- include ('./partials/button.ejs', { btnType: "cell" , row: row, col: col})  -%>
+                            <% } %>
+                        </div>
+                    <% } %>
+
+                    <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
+                </li>
+
+                <% } %>
+        </ul>
+
+        <section class="mobile-text">
+            <h1>We don’t support mobile devices</h1>
+            <p>Please open this site on a larger device</p>
+        </section>
 
 </main>
 
@@ -90,7 +98,25 @@
     }
 </style> -->
 
+<script>
+        const noContext = document.querySelector("body");
+
+        noContext.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchstart', function(e) {
+            console.log('touch!');
+            // if (e.touches.length === 2) {
+            //     // store the positions of the two touch points
+            //     touchStartPos = [e.touches[0].pageX, e.touches[0].pageY, e.touches[1].pageX, e.touches[1].pageY];
+            // }
+            });
+
+    </script>
+
 <script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
 
-<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>" data-cell-amount="<%= cellAmount%>"></script>
+<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>"
+    data-cell-amount="<%= cellAmount%>"></script>

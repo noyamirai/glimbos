@@ -113,6 +113,8 @@ button {
 
     --font-headers: 'InterBold', sans-serif;
     --font-paragraphs: 'InterRegular', sans-serif;
+
+    --audioDuration: .5;
 }
 
 
@@ -161,7 +163,7 @@ body::after {
 }
 
 main {
-    max-width: 65rem;
+    max-width: 90rem;
     margin: auto;
 }
 
@@ -325,9 +327,21 @@ div.worm.bottom::after {
 /************************/
 .character-container,
 .track-container {
-    max-width: 60rem;
+    /* max-width: 60rem; */
     margin: 0 auto;
+    width: 100%;
 }
+
+.character picture {
+    width: 100%;
+    height: 100%;
+}
+    .character picture > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: bottom;
+    }
 
 
 /*****************/
@@ -383,49 +397,258 @@ div.worm.bottom::after {
 }
 
 /* Single tracks */
-.track-container>.track {
+.track {
     display: flex;
     background-color: var(--track-color);
     box-shadow: .1875rem .1875rem 0 0 rgba(0, 0, 0);
-    border-radius: .75rem;
+    border-radius: .55rem;
     margin-bottom: .9375rem;
     margin: 0 auto 1rem auto;
-    padding: .5rem 3%;
+    padding: .5rem 1rem;
     height: 4rem;
 }
 
 /* Notes container */
-.track-container>.track>ul {
+.btn-container, .btn--cell-ful {
     display: flex;
-    gap: 1rem;
-    width: 85%;
-    margin: 0 auto;
+    gap: .7rem;
+    width: 100%;
+    padding: 0 1rem;
+    /* margin: 0 auto; */
+}
+
+.btn--cell-ful{
+    max-width: 85% !important;
 }
 
 /* Individual notes */
-.track-container>.track>ul>li {
+.btn--cell {
     height: 100%;
     width: 100%;
-    max-width: 7.25rem;
-    border-radius: .75rem;
+    /* max-width: 7.25rem; */
+    border-radius: .45rem;
     background-color: var(--note-color);
-}
-
-.track-container>.track>ul>li>button {
-    height: 100%;
-    width: 100%;
     border: none;
 }
 
+.btn--cell.sequence {
+    background-color: pink;
+}
+
+.btn--cell.active {
+    background-color: blue;
+}
+
 /* Delete track button */
-.track-container>.track>button {
+.btn--undo{
     padding: 0 .5rem;
 }
 
 
+/**********/
+/* Eyeguy */
+/**********/
+.eyeguy {
+    position: relative;
+    height: 16.5rem;
+    width: 16.5rem;
+}
+
+.eyeguy>div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.eyeguy.selected>div{
+    animation: bounce 1s linear infinite;
+}
+
+.eyeguy svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.eyeguy>div>svg {
+    width: 13.1rem;
+    bottom: 3rem;
+    z-index: 5;
+}
+
+.eyeguy>svg {
+    z-index: 4;
+}
+
+.eyeguy>div>.eye {
+    background-color: white;
+    /* border: .3rem solid #904a9a; */
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 2rem;
+    clip-path: circle(50% at 50% 50%);
+    z-index: 10;
+}
 
 
+.eyeguy>div>.eye:before {
+    content: "";
+    display: block;
+    background-color: #722f7c;
+    height: 0rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    animation: blink 3s linear infinite;
+    z-index: 4;
+}
 
+.eyeguy>div>.eye:after {
+    content: "";
+    display: block;
+    background-color: #722f7c;
+    height: 1rem;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    animation: blink 3s linear infinite;
+    z-index: 4;
+}
+
+
+.eyeguy>div>.eye:nth-of-type(2) {
+    right: 2rem;
+    left: auto;
+}
+
+.eyeguy .pupil {
+    content: "";
+    height: .9rem;
+    width: .9rem;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    display: block;
+    border-radius: 50%;
+    top: 2rem;
+}
+
+.eyeguy .pupil-left {
+    left: 1.5rem;
+    right: auto;
+}
+
+.eyeguy .pupil-right {
+    right: 1.5rem;
+    left: auto;
+}
+
+.eyeguy>div>.mouth {
+    width: 1.5rem;
+    height: 0rem;
+    border: .15rem solid #722f7c;
+    border-radius: 1rem;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #e684ba;
+    /* transition: height 500ms ease-in-out; */
+    z-index: 12;
+}
+
+body.playing .eyeguy>div>.eye:after {
+    right: 1rem;
+    left: initial;
+}
+
+body.playing .eyeguy>div>.eye:nth-of-type(2):after {
+    left: 1rem;
+    right: initial;
+}
+
+body.playing .eyeguy .mouth {
+    animation: mouth 500ms linear forwards;
+
+    border-radius: 4em;
+    background-color: #e684ba;
+    border-width: .25rem;
+}
+/* .stand:has(:not(.eyeguy.sequence)) .eyeguy .mouth {
+    animation: mouth 3s linear reverse;
+
+    border-radius: 4em;
+    background-color: #e684ba;
+    border-width: .25rem;
+} */
+
+@keyframes mouth {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 5rem;
+    }
+}
+
+
+@keyframes bounce {
+    0% {
+        bottom: 0rem;
+    }
+
+    50% {
+        bottom: -.5rem;
+    }
+
+    100% {
+        bottom: 0rem;
+    }
+}
+
+@keyframes blink {
+    0% {
+        height: 0rem;
+    }
+
+    5% {
+        height: 3rem;
+    }
+
+    10% {
+        height: 0rem;
+    }
+
+    15% {
+        height: 3rem;
+    }
+
+    20% {
+        height: 0rem;
+    }
+
+    65% {
+        height: 0rem;
+    }
+
+    70% {
+        height: 3rem;
+    }
+
+    75% {
+        height: 0rem;
+    }
+
+    100% {
+        height: 0rem;
+
+
+    }
+}
 /***********/
 /* Devices */
 /***********/
