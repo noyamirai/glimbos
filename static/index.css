@@ -103,12 +103,12 @@ button {
     --track-color: #FFF;
     --note-color: #D9D9D9;
 
-    --accent-color1: #FD3787;
-    --accent-color2: #B056D8;
-    --accent-color3: #FDCF01;
-    --accent-color4: #01E7FC;
-    --accent-color5: #DD0B0B;
-    --accent-color6: #FC8105;
+    --accent-color1: #A3EBB7;
+    --accent-color2: #e8b69a;
+    --accent-color3: #F3670B;
+    --accent-color4: #1FA8C7;
+    --accent-color5: #c6a2e3;
+    --accent-color6: #904A9A;
     --accent-color7: #959595;
 
     --font-headers: 'InterBold', sans-serif;
@@ -343,6 +343,29 @@ div.worm.bottom::after {
         object-position: bottom;
     }
 
+.track--langert .btn--cell.active {
+    background-color: var(--accent-color1);
+}
+
+.track--kitty .btn--cell.active {
+    background-color: var(--accent-color2);
+}
+
+.track--vis .btn--cell.active {
+    background-color: var(--accent-color3);
+}
+
+.track--worm .btn--cell.active {
+    background-color: var(--accent-color4);
+}
+
+.track--blob .btn--cell.active {
+    background-color: var(--accent-color5);
+}
+
+.track--eyeguy .btn--cell.active {
+    background-color: var(--accent-color6);
+}
 
 /*****************/
 /* Character bar */
@@ -357,6 +380,7 @@ div.worm.bottom::after {
 
 .character-container .stand {
     width: 100%;
+    height: 23rem;
     padding-bottom: 1.875rem;
     display: grid;
     grid-template-columns: repeat(6, 150px);
@@ -379,9 +403,34 @@ div.worm.bottom::after {
     z-index: -1;
 }
 
-.character-container .stand .cat {
-    display: flex;
-    justify-content: center;
+.character-container .stand .character {
+    position: absolute;
+    transform: translate(-50%, -1rem);
+}
+
+.character-container .stand .character.langert {
+    height: 100%;
+    left: 15%;
+}
+
+.character-container .stand .character.kitty {
+    left: 25%;
+}
+
+.character-container .stand .character.vis {
+    left: 40%;
+}
+
+.character-container .stand .character.worm {
+    left: 52%;
+}
+
+.character-container .stand .character.blob {
+    left: 68%;
+}
+
+.character-container .stand .character.eyeguy {
+    left: 85%;
 }
 
 .mobile-text {
@@ -432,7 +481,7 @@ div.worm.bottom::after {
 }
 
 .btn--cell.sequence {
-    background-color: pink;
+    background-color: rgb(85, 215, 255);
 }
 
 .btn--cell.active {
