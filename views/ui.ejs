@@ -1,0 +1,32 @@
+<main>
+    <div class="character-container">
+        <div class="stand">
+            <div class="character cat"> <%- include ('./partials/characters/character-kitty.ejs') -%> </div>
+            <div class="character"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
+            <div class="character"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
+            <div class="character"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
+            <div class="character"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
+            <div class="character"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
+        </div>
+    </div>
+    <ul class="track-container">
+        <% for (let row=0; row < 6; row++) { %>
+            <li class="track"><%- include ('./partials/track.ejs') -%></li>
+            <% } %>
+    </ul>
+    <section class="mobile-text">
+        <h1>We don’t support mobile devices</h1>
+        <p>Please open this site on a larger device</p>
+    </section>
+</main>
+<footer>
+    <script>
+        const noContext = document.querySelector("body");
+
+        noContext.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        });
+
+    </script>
+    <!-- Hier komt logo dingetje -->
+</footer>

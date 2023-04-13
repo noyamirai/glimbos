@@ -1,5 +1,6 @@
 import express from 'express';
 import fs from 'fs';
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dashRouter from './routes/home.js';
@@ -11,6 +12,8 @@ const app = express();
 const port = 9000;
 
 app.locals.fs = fs;
+app.locals.characterAmount = 6;
+app.locals.cellAmount = 16;
 
 // SET TEMPLATE ENGINE
 app.set('view engine', 'ejs');

@@ -1,40 +1,90 @@
 <main>
-    <h1>Hi!</h1>
 
+    <%- include ('./partials/button.ejs', { btnType: "controls" }) -%>
 
-    <div id="content">
-        <button id="tone-play-toggle">Start</button>
-        <button id="tone-play-stop">end</button>
+        <div class="character-container">
+            <div class="stand">
+                <% for (let row=0; row < characterAmount; row++) { %>
 
-        <div class="container" id="tone-step-sequencer">
-            <% for (let row = 0; row < 6; row++) { %>
-                <div class="column">
-                    <% for (let col = 0; col < 4; col++) { %>
-                        <button class="cell" data-row="<%= row %>" data-col="<%= col %>"></button>
+                    <% if (characterObject[row]) { %>
+                        <div data-character data-character-type="<%= characterObject[row].type %>" class="character <%= characterObject[row].type %>"> <%- include (`./partials/characters/${characterObject[row].name}`)-%> </div>
+                    <% } else { %>
+                        <div data-character class="character worm"> <%- include ('./partials/characters/character-worm.ejs')-%> </div>
                     <% } %>
-                </div>
-            <% } %>
+
+                <% } %>
+            </div>
         </div>
-    </div>
+
+        <ul class="track-container">
+            <% for (let row=0 ; row < characterAmount; row++) { %>
+                <li data-track class="track hide" <%=row==5 ? 'data-track-wide' : '' %>>
+                    <img src="/static/images/Ellipse 1.svg">
+
+                    <% if (row==5) { %>
+                        <%- include ('./partials/button.ejs', { btnType: "cell--full" }) -%>
+                    <% } else { %>
+                        <div class="btn-container">
+                            <% for (let col=0; col < cellAmount; col++) { %>
+                                <%- include ('./partials/button.ejs', { btnType: "cell" , row: row, col: col})  -%>
+                            <% } %>
+                        </div>
+                    <% } %>
+
+                    <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
+                </li>
+
+                <% } %>
+        </ul>
+
+        <section class="mobile-text">
+            <h1>We don’t support mobile devices</h1>
+            <p>Please open this site on a larger device</p>
+        </section>
+
 </main>
 
-<style>
-    .container {
-        height: 150px;
-        display: flex;
+<!-- <style>
+    .hide {
+        display: none!important;
     }
 
-    .column {
-        flex: 1 1 0%;
+    .character-container {
+        display: flex;
+        height: 100px;
+
+        margin-bottom: 40px;
+        gap: 12px;
+    }
+
+    .character {
+        height: 100%;
+        width: 100px;
+        display: block;
+        background-color: pink;
+    }
+
+    .container {
+        height: 500px;
         display: flex;
         flex-direction: column;
     }
 
-    .column.sequence > .cell {
-        background-color: pink;
+    .column {
+        min-height: 50px;
+        /* flex: 1 1 0%; */
+        display: flex;
     }
 
-    .cell {
+    .cell.sequence {
+        background-color: pink!important;
+    }
+
+    .character.selected {
+        background-color: red;
+    }
+
+    .cell,.track {
         outline: rgb(252, 213, 177) solid 0px;
         margin: 2px;
         flex: 1 1 0%;
@@ -42,10 +92,23 @@
         border: none;
     }
 
-    .cell.active {
+    .cell.active,
+    .track.active {
         background-color: #000;
     }
-</style>
+</style> -->
 
+<script>
+    const noContext = document.querySelector("body");
+
+    noContext.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+    });
+
+</script>
+
+<script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
-<script type="module" src="/src/audio.js"></script>
+
+<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>"
+    data-cell-amount="<%= cellAmount%>"></script>
