@@ -357,6 +357,115 @@ div.worm.bottom::after {
     padding: 0 .5rem;
 }
 
+/**********/
+/* Blob */
+/**********/
+
+.blob-body {
+    background-color: #e9d2fc;
+    width: 150px;
+    height: 125px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    animation: blobRoll 2.5s infinite linear;
+    animation-delay: 1s;
+}
+
+.blob-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.blob-eyes {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    width: 80%;
+    gap: 1rem;
+}
+
+.blob-eye-left,
+.blob-eye-right {
+    width: 25px;
+}
+
+.blob-mouth {
+    display: flex;
+    align-self: center;
+    background-color: black;
+    width: 75px;
+    height: 7px;
+    border-radius: 7px 7px 100px 100px;
+    transform-origin: center;
+    animation: blobMouthResize 1s forwards ease-out;
+
+}
+
+@keyframes blobMouthResize {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 30px;
+    }
+}
+
+@keyframes blobStartSinging {
+    0% {
+        height: 60px;
+        width: 155px;
+        border-radius: 7px 7px 100px 100px;
+    }
+    50% {
+        height: 0px;
+        width: 0px;
+        border-radius: 7px 7px 100px 100px;
+    }
+    100% {
+        width: 105px;
+        height: 60px;
+        border-radius: 50%;
+    }
+}
+
+@keyframes blobSinging {
+    0% {
+        width: 105px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    50% {
+        width: 115px;
+        height: 70px;
+        border-radius: 50%;
+    }
+    100% {
+        width: 105px;
+        height: 60px;
+        border-radius: 50%;
+    }
+}
+
+@keyframes blobRoll {
+    0% {
+      transform: translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateX(-10%) rotate(-20deg);
+    }
+    50% {
+      transform: translateX(0) rotate(0deg);
+    }
+    75% {
+      transform: translateX(10%) rotate(20deg);
+    }
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
 
 /**********/
 /* Eyeguy */
