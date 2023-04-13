@@ -255,10 +255,10 @@ div.worm.head .mouth {
     position: absolute;
     top: 6em;
     left: 2.5em;
-    transition: height 2s ease-in-out;
+    transition: height 1s ease-in-out;
 }
 
-.active div.worm.head .mouth {
+.squence div.worm.head .mouth {
     height: 6em;
     border-radius: 4em;
 }
@@ -273,8 +273,8 @@ div.worm.body {
     z-index: -1;
 }
 
-.active div.worm.body {
-    height: 20em;
+.squence div.worm.body {
+    height: 12em;
 }
 
 div.worm.bottom {
