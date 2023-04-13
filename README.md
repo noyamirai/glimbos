@@ -32,4 +32,56 @@ There is no endgoal, no challenge and no tasks, with Glimbos its all about relax
 ![image](https://user-images.githubusercontent.com/90341211/231725228-27c73f41-26bf-48b5-9c4d-1b92725fdcb6.png)
 ![image](https://user-images.githubusercontent.com/90341211/231725252-2366419a-fc39-4a77-9640-5d7d7764ca7a.png)
 
+## Test
+
+We tested our project with a few people, we asked them to make a beat and asked them to give us feedback on the project.
+
+### Test person 1
+
+- Findings:
+
+  -
+
+- Asked Questions:
+
+  -
+
+- Feedback:
+
+  -
+
+- Link to video:
+
+### Test person 2
+
+- Findings:
+
+  -
+
+- Asked Questions:
+
+  -
+
+- Feedback:
+
+  -
+
+- Link to video:
+
+### Test person 3
+
+- Findings:
+
+  -
+
+- Asked Questions:
+
+  -
+
+- Feedback:
+
+  -
+
+- Link to video:
+
 ## Links
