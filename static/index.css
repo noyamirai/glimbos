@@ -249,7 +249,6 @@ div.worm.bottom::after {
     width: 100%;
     height: 100%;
 }
-
     .character picture > img {
         width: 100%;
         height: 100%;
@@ -359,6 +358,187 @@ div.worm.bottom::after {
 }
 
 
+/**********/
+/* Eyeguy */
+/**********/
+.eyeguy {
+    position: relative;
+    height: 16.5rem;
+    width: 16.5rem;
+}
+
+.eyeguy>div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.selected .eyeguy>div{
+    animation: bounce 1s linear infinite;
+}
+
+.eyeguy svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.eyeguy>div>svg {
+    width: 13.1rem;
+    bottom: 3rem;
+    z-index: 5;
+}
+
+.eyeguy>svg {
+    z-index: 4;
+}
+
+.eyeguy>div>.eye {
+    background-color: white;
+    /* border: .3rem solid #904a9a; */
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 2rem;
+    clip-path: circle(50% at 50% 50%);
+    z-index: 10;
+}
+
+
+.eyeguy>div>.eye:before {
+    content: "";
+    display: block;
+    background-color: #722f7c;
+    height: 0rem;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    animation: blink 3s linear infinite;
+    z-index: 4;
+}
+
+.eyeguy>div>.eye:after {
+    content: "";
+    display: block;
+    background-color: #722f7c;
+    height: 1rem;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    animation: blink 3s linear infinite;
+    z-index: 4;
+}
+
+
+.eyeguy>div>.eye:nth-of-type(2) {
+    right: 2rem;
+    left: auto;
+}
+
+.eyeguy .pupil {
+    content: "";
+    height: .9rem;
+    width: .9rem;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    display: block;
+    border-radius: 50%;
+    top: 2rem;
+}
+
+.eyeguy .pupil-left {
+    left: 1.5rem;
+    right: auto;
+}
+
+.eyeguy .pupil-right {
+    right: 1.5rem;
+    left: auto;
+}
+
+.eyeguy>div>.mouth {
+    width: 1.5rem;
+    height: 0rem;
+    border: .15rem solid #722f7c;
+    border-radius: 1rem;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    transform: translate(-50%);
+    transition: height 2s ease-in-out;
+    z-index: 12;
+}
+
+.sequence .eyeguy>div>.eye:after {
+    right: 1rem;
+    left: initial;
+}
+
+.sequence .eyeguy>div>.eye:nth-of-type(2):after {
+    left: 1rem;
+    right: initial;
+}
+
+.sequence .eyeguy>div>.mouth {
+    height: 2rem;
+    border-radius: 4em;
+    background-color: #e684ba;
+    border-width: .25rem;
+}
+
+
+@keyframes bounce {
+    0% {
+        bottom: 0rem;
+    }
+
+    50% {
+        bottom: -.5rem;
+    }
+
+    100% {
+        bottom: 0rem;
+    }
+}
+
+@keyframes blink {
+    0% {
+        height: 0rem;
+    }
+
+    5% {
+        height: 3rem;
+    }
+
+    10% {
+        height: 0rem;
+    }
+
+    15% {
+        height: 3rem;
+    }
+
+    20% {
+        height: 0rem;
+    }
+
+    65% {
+        height: 0rem;
+    }
+
+    70% {
+        height: 3rem;
+    }
+
+    75% {
+        height: 0rem;
+    }
+
+    100% {
+        height: 0rem;
 
 
 
