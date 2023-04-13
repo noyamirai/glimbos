@@ -20,6 +20,23 @@ There is no endgoal, no challenge and no tasks, with Glimbos its all about relax
 
 ## Work process
 
+On Teusday we discussed what we were going to do and what we wanted to make, we decided to all make a creature that is going to sing when clicked on and a beat is added. When everyone was done with designing a creature we made a design for the website we were going to make. In the sketches you can see what it was going to look like. During designing and coding the design changed a little. Here you can see some images of the design process:
+
+**Design 1**
+![First version](https://user-images.githubusercontent.com/43877754/231773181-7283c61c-27a6-499c-8eb8-b2e0b659fbab.jpg)
+
+**Design 2**
+![Second version](https://user-images.githubusercontent.com/43877754/231773399-a70729e9-2e40-4bed-b8d3-d71350cf7d3d.jpg)
+
+**Design Variation**
+![Other version](https://user-images.githubusercontent.com/43877754/231773719-760e96f8-ec7c-467c-aef9-3ac99bdcbd97.jpg)
+
+**Final version**
+![Final version](https://user-images.githubusercontent.com/43877754/231774224-910a382f-35f2-4b7a-b340-b12d0bf95e3e.jpg)
+
+**Mobile/tablet verion**
+![Mobile and tablet design](https://user-images.githubusercontent.com/43877754/231774398-7c70d77d-e54b-4b0a-abd5-1516da906730.jpg)
+
 ## Tasks
 
 ## Drawings, sketches and important images
