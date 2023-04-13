@@ -3,23 +3,24 @@
 # The official repository for Glimbos! the musical creatures that will keep you entertained and inspired
 
 ## Contributors:
+
 - Maijla Ikiz
--Sasja Koning
+- Sasja Koning
 - Chris Gabriel III
 - Ine van den Hoven
-- pip Harsveld
+- Pip Harsveld
 - Michel Wassing
 
 ## Concept
+
 With Glimbos you can create your own beat by interacting with a bunch of quirky little charaacters that all have their unqiue sounds.
 There is no endgoal, no challenge and no tasks, with Glimbos its all about relaxing and enjoying life and its creations, you are here to create something beautiful and are presented with the tools to do so.
-
 
 ## Debriefing
 
 ## Work process
 
-## Tasks 
+## Tasks
 
 ## Drawings, sketches and important images
 
@@ -32,5 +33,3 @@ There is no endgoal, no challenge and no tasks, with Glimbos its all about relax
 ![image](https://user-images.githubusercontent.com/90341211/231725252-2366419a-fc39-4a77-9640-5d7d7764ca7a.png)
 
 ## Links
-
-

@@ -60,11 +60,46 @@ button {
 .hide {
     display: none!important;
 }
+
+.play, .stop {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.5rem;
+    border-radius: .75rem;
+    font-size: 0;
+    background-color: var(--track-color);
+    box-shadow: .1875rem .1875rem 0 0 var(--accent-color7);
+    position: relative;
+}
+
+.play {
+    margin-right: 0.5rem;
+}
+
+.play::before,
+.stop::before {
+    content: '';
+    width: 1.25rem;
+    height: 1.5625rem;
+    background-image: url("/images/stop.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play::before {
+    background-image: url("/images/play.svg");
+}
+
 /********/
 /* Root */
 /********/
 :root {
-    --background-color: #1F4FF6;
+    --background-color: #2B2B2B;
     --track-color: #FFF;
     --note-color: #D9D9D9;
 
@@ -74,6 +109,7 @@ button {
     --accent-color4: #01E7FC;
     --accent-color5: #DD0B0B;
     --accent-color6: #FC8105;
+    --accent-color7: #959595;
 
     --font-headers: 'InterBold', sans-serif;
     --font-paragraphs: 'InterRegular', sans-serif;
@@ -88,13 +124,62 @@ button {
 body {
     line-height: 1.5;
     padding: 1rem 2rem;
-    background-color: #1F4FF6;
+    background-color: var(--background-color);
     margin: 0 auto;
+}
+
+body::before {
+    content: '';
+    max-width: calc(100% - 2em);
+    width: 100%;
+    height: 55%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    background-image: url('/images/new-banner.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+body::after {
+    content: '';
+    max-width: calc(100% - 2em);
+    width: 20%;
+    height: 55%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 3em;
+    left: 63%;
+    transform: translateX(-50%);
+    z-index: -1;
+    background-image: url('/images/click-us.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 main {
     max-width: 90rem;
     margin: auto;
+}
+
+main::after {
+    content: '';
+    width: 9rem;
+    height: 5rem;
+    background-image: url("/images/logo_white.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 1em;
+    bottom: 1em;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 h1 {
@@ -136,6 +221,7 @@ div.worm.head {
     border-radius: 50% 50% 0 0;
     background: #1FA8C7;
     position: relative;
+    bottom: -0.125rem;
 }
 
 div.worm.head::before {
@@ -167,7 +253,6 @@ div.worm.head .eyes::before {
 }
 
 @keyframes knipperen {
-
     0%,
     30%,
     100% {
@@ -187,10 +272,10 @@ div.worm.head .mouth {
     position: absolute;
     top: 6em;
     left: 2.5em;
-    transition: height 2s ease-in-out;
+    transition: height 1s ease-in-out;
 }
 
-.active div.worm.head .mouth {
+.squence div.worm.head .mouth {
     height: 6em;
     border-radius: 4em;
 }
@@ -201,12 +286,12 @@ div.worm.body {
     background: #1FA8C7;
     transition: height 2s ease-in-out;
     position: relative;
-    bottom: 0;
+    bottom: -0.0625rem;
     z-index: -1;
 }
 
-.active div.worm.body {
-    height: 20em;
+.squence div.worm.body {
+    height: 12em;
 }
 
 div.worm.bottom {
@@ -266,7 +351,7 @@ div.worm.bottom::after {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    max-height: 20rem;
+    min-height: 23rem;
     height: 100%;
 }
 
@@ -284,10 +369,10 @@ div.worm.bottom::after {
     content: '';
     width: 100%;
     height: 3.125rem;
-    border: .125rem solid #000;
+    border: .125rem solid var(--accent-color7);
     border-radius: .75rem;
     background-color: #fff;
-    box-shadow: .1875rem .1875rem 0 0 rgba(0, 0, 0);
+    box-shadow: .1875rem .1875rem 0 0 var(--accent-color7);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -575,6 +660,15 @@ body.playing .eyeguy .mouth {
         justify-content: center;
     }
 
+    body::before,
+    body::after {
+        content: none;
+    }
+
+    .play, .stop {
+        display: none;
+    }
+
     .character-container,
     .track-container {
         display: none;
@@ -640,5 +734,12 @@ body.playing .eyeguy .mouth {
         bottom: 8rem;
         left: 1em;
         z-index: -1;
+    }
+}
+
+@media only screen and (min-width: 100rem) {
+    body::after {
+        width: 16%;
+        top: 0.5em;
     }
 }
