@@ -91,7 +91,7 @@ body {
 }
 
 main {
-    max-width: 65rem;
+    max-width: 90rem;
     margin: auto;
 }
 
@@ -240,8 +240,9 @@ div.worm.bottom::after {
 /************************/
 .character-container,
 .track-container {
-    max-width: 60rem;
+    /* max-width: 60rem; */
     margin: 0 auto;
+    width: 100%;
 }
 
 
@@ -302,19 +303,20 @@ div.worm.bottom::after {
     display: flex;
     background-color: var(--track-color);
     box-shadow: .1875rem .1875rem 0 0 rgba(0, 0, 0);
-    border-radius: .75rem;
+    border-radius: .55rem;
     margin-bottom: .9375rem;
     margin: 0 auto 1rem auto;
-    padding: .5rem 3%;
+    padding: .5rem 1rem;
     height: 4rem;
 }
 
 /* Notes container */
 .btn-container, .btn--cell-ful {
     display: flex;
-    gap: 1rem;
-    width: 85%;
-    margin: 0 auto;
+    gap: .7rem;
+    width: 100%;
+    padding: 0 1rem;
+    /* margin: 0 auto; */
 }
 
 .btn--cell-ful{
@@ -325,8 +327,8 @@ div.worm.bottom::after {
 .btn--cell {
     height: 100%;
     width: 100%;
-    max-width: 7.25rem;
-    border-radius: .75rem;
+    /* max-width: 7.25rem; */
+    border-radius: .45rem;
     background-color: var(--note-color);
     border: none;
 }

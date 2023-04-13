@@ -5,9 +5,14 @@
         <div class="character-container">
             <div class="stand">
                 <% for (let row=0; row < characterAmount; row++) { %>
-                    <div data-character class="character cat"> <%- include ('./partials/characters/character-worm.ejs')
-                            -%> </div>
+
+                    <% if (characterObject[row]) { %>
+                        <div data-character data-character-type="<%= characterObject[row].type %>" class="character <%= characterObject[row].type %>"> <%- include (`./partials/characters/${characterObject[row].name}`)-%> </div>
+                    <% } else { %>
+                        <div data-character class="character worm"> <%- include ('./partials/characters/character-worm.ejs')-%> </div>
                     <% } %>
+
+                <% } %>
             </div>
         </div>
 
@@ -18,16 +23,15 @@
 
                     <% if (row==5) { %>
                         <%- include ('./partials/button.ejs', { btnType: "cell--full" }) -%>
-                            <% } else { %>
-                                <div class="btn-container">
-                                    <% for (let col=0; col < cellAmount; col++) { %>
-                                        <%- include ('./partials/button.ejs', { btnType: "cell" , row: row, col: col})
-                                            -%>
-                                            <% } %>
-                                </div>
-                                <% } %>
+                    <% } else { %>
+                        <div class="btn-container">
+                            <% for (let col=0; col < cellAmount; col++) { %>
+                                <%- include ('./partials/button.ejs', { btnType: "cell" , row: row, col: col})  -%>
+                            <% } %>
+                        </div>
+                    <% } %>
 
-                                    <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
+                    <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
                 </li>
 
                 <% } %>
