@@ -60,6 +60,41 @@ button {
 .hide {
     display: none!important;
 }
+
+.play, .stop {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.5rem;
+    border-radius: .75rem;
+    font-size: 0;
+    background-color: var(--track-color);
+    box-shadow: .1875rem .1875rem 0 0 var(--accent-color7);
+    position: relative;
+}
+
+.play {
+    margin-right: 0.5rem;
+}
+
+.play::before,
+.stop::before {
+    content: '';
+    width: 1.25rem;
+    height: 1.5625rem;
+    background-image: url("/images/stop.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.play::before {
+    background-image: url("/images/play.svg");
+}
+
 /********/
 /* Root */
 /********/
@@ -390,6 +425,10 @@ div.worm.bottom::after {
     body::before,
     body::after {
         content: none;
+    }
+
+    .play, .stop {
+        display: none;
     }
 
     .character-container,
