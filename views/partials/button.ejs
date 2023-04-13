@@ -1,0 +1,13 @@
+<% if (btnType == 'cell') { %>
+    <button class="btn btn--cell" data-track-cell data-row="<%= row %>" data-col="<%= col %>"></button>
+<% } else if (btnType == 'cell--full') { %>
+    <div class="btn btn--cell btn--cell-ful" data-track-block ></div>
+<% } else if (btnType == 'controls') { %>
+    <button class="hide" data-track-control-btns data-play-btn>Start</button>
+    <button class="hide" data-track-control-btns data-stop-btn>end</button>
+
+<% } else if (btnType == 'undo') { %>
+    <button class="btn btn--undo" data-track-undo>
+        <img src="/static/images/trash.svg" alt="Delete track">
+    </button>
+<% } %>

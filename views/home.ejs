@@ -1,47 +1,42 @@
 <main>
-    <h1>Hi!</h1>
 
-    <div id="content">
-        <h1>Tones</h1>
+    <%- include ('./partials/button.ejs', { btnType: "controls" }) -%>
 
-        <button class="hide" data-track-control-btns data-play-btn id="tone-play-toggle">Start</button>
-        <button class="hide" data-track-control-btns data-stop-btn id="tone-play-stop">end</button>
-
-        <div class="character-container">
-
+    <div class="character-container">
+        <div class="stand">
             <% for (let row = 0; row < characterAmount; row++) { %>
-                <div data-character class="character">
-                    <%= row + 1 %>
-                </div>
-            <% } %>
-
-        </div>
-
-        <div class="container" id="tone-step-sequencer">
-            <% for (let row = 0; row < characterAmount; row++) { %>
-                <!-- <button class="hide" data-track-control-btns data-track-control-for="row" data-play-btn id="tone-play-toggle">Start</button>
-                <button class="hide" data-track-control-btns data-track-control-for="row" data-stop-btn id="tone-play-stop">end</button> -->
-
-                <div data-track class="column hide" <%= row == 5 ? 'data-track-wide' : '' %>>
-                    <% if (row == 5) { %>
-                        <div data-track-block class="track">
-
-                        </div>
-                    <% } else { %>
-                        <% for (let col = 0; col < cellAmount; col++) { %>
-                            <button data-track-cell class="cell" data-row="<%= row %>" data-col="<%= col %>">
-                            </button>
-                        <% } %>
-                    <% } %>
-                </div>
+                <div data-character class="character cat"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
             <% } %>
         </div>
-
-
     </div>
+
+    <ul class="track-container">
+        <% for (let row=0 ; row < characterAmount; row++) { %>
+            <li data-track class="track hide" <%= row == 5 ? 'data-track-wide' : '' %>>
+                <img src="/static/images/Ellipse 1.svg">
+                
+                <% if (row == 5) { %>
+                    <%- include ('./partials/button.ejs', { btnType: "cell--full"}) -%>
+                <% } else { %>
+                    <% for (let col = 0; col < cellAmount; col++) { %>
+                        <%- include ('./partials/button.ejs', { btnType: "cell", row: row, col: col}) -%>
+                    <% } %>
+                <% } %>
+                
+                <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
+            </li>
+
+        <% } %>
+    </ul>
+
+    <section class="mobile-text">
+        <h1>We don’t support mobile devices</h1>
+        <p>Please open this site on a larger device</p>
+    </section>
+
 </main>
 
-<style>
+<!-- <style>
     .hide {
         display: none!important;
     }
@@ -93,7 +88,7 @@
     .track.active {
         background-color: #000;
     }
-</style>
+</style> -->
 
 <script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
