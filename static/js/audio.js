@@ -124,8 +124,16 @@ playButton.addEventListener("click", async () => {
           }
   
         } else if (!seqBtn.className.includes(activeStateClass) && (currentStep-1) > activeSeq) {
+
+          if (characterType == 'worm') {
+            
+            setTimeout(() => {
+              characterBtns[row].classList.remove(sequenceStartedClass);  
+            }, 300);
+          } else {
+              characterBtns[row].classList.remove(sequenceStartedClass);
+          }
         
-          characterBtns[row].classList.remove(sequenceStartedClass);
 
           if (characterType == 'langert') {
             const imageEl = character.querySelector('img');
