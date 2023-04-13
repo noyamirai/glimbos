@@ -58,10 +58,11 @@ button {
 }
 
 .hide {
-    display: none!important;
+    display: none !important;
 }
 
-.btn--play, .btn--stop {
+.btn--play,
+.btn--stop {
     width: 2.75rem;
     height: 2.75rem;
     padding: 0.5rem;
@@ -195,132 +196,6 @@ p {
 }
 
 
-/***************/
-/* Sasja's cat */
-/***************/
-canvas {
-    pointer-events: none;
-}
-
-
-/**************/
-/* Ine's worm */
-/**************/
-div.worm.all {
-    /* height: 80dvh; */
-    scale: 0.7;
-    transform-origin: bottom;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-div.worm.head {
-    width: 10em;
-    height: 10em;
-    border-radius: 50% 50% 0 0;
-    background: #1FA8C7;
-    position: relative;
-    bottom: -0.125rem;
-}
-
-div.worm.head::before {
-    content: '';
-    width: 10em;
-    height: 7em;
-    border-radius: 50%;
-    background: radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 2.5em) 2em -2em, radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 3em) -2em -2em;
-    position: absolute;
-    top: 2.2em;
-}
-
-div.worm.head .eyes,
-div.worm.head .eyes::before {
-    width: 2.2em;
-    height: 0;
-    border-radius: 50% 50% 10% 10%;
-    background: #0E6E83;
-    position: absolute;
-    top: 2.5em;
-    left: 1.9em;
-    animation: knipperen 4s 2s infinite;
-}
-
-div.worm.head .eyes::before {
-    content: '';
-    top: 0;
-    left: 4em;
-}
-
-@keyframes knipperen {
-    0%,
-    30%,
-    100% {
-        height: 0;
-    }
-
-    15% {
-        height: 2.3em;
-    }
-}
-
-div.worm.head .mouth {
-    width: 5em;
-    height: 1.5em;
-    border-radius: 1em;
-    background: #0E6E83;
-    position: absolute;
-    top: 6em;
-    left: 2.5em;
-    transition: height 300ms ease-in-out;
-}
-
-.worm.sequence div.worm.head .mouth {
-    height: 6em;
-    border-radius: 4em;
-}
-
-div.worm.body {
-    width: 10em;
-    height: 2em;
-    background: #1FA8C7;
-    transition: height 300ms ease-in-out;
-    position: relative;
-    bottom: -0.0625rem;
-    z-index: -1;
-}
-
-.worm.sequence div.worm.body {
-    height: 12em;
-}
-
-div.worm.bottom {
-    width: 10em;
-    height: 2em;
-    border: 0;
-    border-radius: 0 0 0.5em 0.5em;
-    background: #1FA8C7;
-    position: relative;
-    top: 0;
-}
-
-div.worm.bottom::before,
-div.worm.bottom::after {
-    content: '';
-    width: 2.5em;
-    height: 3em;
-    border-radius: 50% 50% 10% 10%;
-    background: #0E6E83;
-    position: absolute;
-    left: 1.5em;
-    bottom: -0.8em;
-}
-
-div.worm.bottom::after {
-    left: inherit;
-    right: 1.5em;
-}
-
 
 /************************/
 /* Character and tracks */
@@ -336,12 +211,13 @@ div.worm.bottom::after {
     width: 100%;
     height: 100%;
 }
-    .character picture > img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: bottom;
-    }
+
+.character picture>img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+}
 
 
 /*****************/
@@ -406,19 +282,31 @@ div.worm.bottom::after {
     margin: 0 auto 1rem auto;
     padding: .5rem 1rem;
     height: 4rem;
+    gap: 1rem;
+}
+
+/* Character icon */
+.icon-container {
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--accent-color1);
+    aspect-ratio: 1/1;
+}
+
+.icon-image {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Notes container */
-.btn-container, .btn--cell-ful {
+.btn-container,
+.btn--cell-ful {
     display: flex;
     gap: .7rem;
     width: 100%;
-    padding: 0 1rem;
-    /* margin: 0 auto; */
-}
-
-.btn--cell-ful{
-    max-width: 85% !important;
 }
 
 /* Individual notes */
@@ -440,14 +328,14 @@ div.worm.bottom::after {
 }
 
 /* Delete track button */
-.btn--undo{
+.btn--undo {
     padding: 0 .5rem;
 }
 
-/**********/
-/* Blob */
-/**********/
 
+/********/
+/* Blob */
+/********/
 .blob-body {
     background-color: #e9d2fc;
     width: 150px;
@@ -466,6 +354,7 @@ div.worm.bottom::after {
     flex-direction: column;
     justify-content: space-evenly;
 }
+
 .blob-eyes {
     display: flex;
     justify-content: space-between;
@@ -499,11 +388,13 @@ div.worm.bottom::after {
         height: 30px;
         border-radius: 50%;
     }
+
     50% {
         width: 55px;
         height: 40px;
         border-radius: 50%;
     }
+
     100% {
         width: 55px;
         height: 30px;
@@ -513,21 +404,27 @@ div.worm.bottom::after {
 
 @keyframes blobRoll {
     0% {
-      transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
     }
+
     25% {
-      transform: translateX(-10%) rotate(-20deg);
+        transform: translateX(-10%) rotate(-20deg);
     }
+
     50% {
-      transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
     }
+
     75% {
-      transform: translateX(10%) rotate(20deg);
+        transform: translateX(10%) rotate(20deg);
     }
+
     100% {
-      transform: translateX(0) rotate(0deg);
+        transform: translateX(0) rotate(0deg);
     }
-  }
+}
+
+
 
 /**********/
 /* Eyeguy */
@@ -544,7 +441,7 @@ div.worm.bottom::after {
     position: absolute;
 }
 
-.eyeguy.selected>div{
+.eyeguy.selected>div {
     animation: bounce 1s linear infinite;
 }
 
@@ -661,6 +558,7 @@ body.playing .eyeguy.selected .mouth {
     background-color: #e684ba;
     border-width: .25rem;
 }
+
 /* .stand:has(:not(.eyeguy.sequence)) .eyeguy .mouth {
     animation: mouth 3s linear reverse;
 
@@ -733,6 +631,136 @@ body.playing .eyeguy.selected .mouth {
 
     }
 }
+
+/***************/
+/* Sasja's cat */
+/***************/
+canvas {
+    pointer-events: none;
+}
+
+
+/**************/
+/* Ine's worm */
+/**************/
+div.worm.all {
+    /* height: 80dvh; */
+    scale: 0.7;
+    transform-origin: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+div.worm.head {
+    width: 10em;
+    height: 10em;
+    border-radius: 50% 50% 0 0;
+    background: #1FA8C7;
+    position: relative;
+    bottom: -0.125rem;
+}
+
+div.worm.head::before {
+    content: '';
+    width: 10em;
+    height: 7em;
+    border-radius: 50%;
+    background: radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 2.5em) 2em -2em, radial-gradient(circle, black 0.5em, white 0.5em 1em, transparent 1em 3em) -2em -2em;
+    position: absolute;
+    top: 2.2em;
+}
+
+div.worm.head .eyes,
+div.worm.head .eyes::before {
+    width: 2.2em;
+    height: 0;
+    border-radius: 50% 50% 10% 10%;
+    background: #0E6E83;
+    position: absolute;
+    top: 2.5em;
+    left: 1.9em;
+    animation: knipperen 4s 2s infinite;
+}
+
+div.worm.head .eyes::before {
+    content: '';
+    top: 0;
+    left: 4em;
+}
+
+@keyframes knipperen {
+    0%,
+    30%,
+    100% {
+        height: 0;
+    }
+
+    15% {
+        height: 2.3em;
+    }
+}
+
+div.worm.head .mouth {
+    width: 5em;
+    height: 1.5em;
+    border-radius: 1em;
+    background: #0E6E83;
+    position: absolute;
+    top: 6em;
+    left: 2.5em;
+    transition: height 1s ease-in-out;
+}
+
+.worm.sequence div.worm.head .mouth {
+    height: 6em;
+    border-radius: 4em;
+}
+
+div.worm.body {
+    width: 10em;
+    height: 2em;
+    background: #1FA8C7;
+    transition: height 2s ease-in-out;
+    position: relative;
+    bottom: -0.0625rem;
+    z-index: -1;
+}
+
+.worm.sequence div.worm.body {
+    height: 12em;
+}
+
+div.worm.bottom {
+    width: 10em;
+    height: 2em;
+    border: 0;
+    border-radius: 0 0 0.5em 0.5em;
+    background: #1FA8C7;
+    position: relative;
+    top: 0;
+}
+
+div.worm.bottom::before,
+div.worm.bottom::after {
+    content: '';
+    width: 2.5em;
+    height: 3em;
+    border-radius: 50% 50% 10% 10%;
+    background: #0E6E83;
+    position: absolute;
+    left: 1.5em;
+    bottom: -0.8em;
+}
+
+div.worm.bottom::after {
+    left: inherit;
+    right: 1.5em;
+}
+
+
+
+
 /***********/
 /* Devices */
 /***********/
@@ -749,7 +777,8 @@ body.playing .eyeguy.selected .mouth {
         content: none;
     }
 
-    .play, .stop {
+    .play,
+    .stop {
         display: none;
     }
 
