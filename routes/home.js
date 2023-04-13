@@ -18,12 +18,7 @@ async function getFileNames(directoryPath) {
     const files = await fsPromise.readdir(directoryPath);
     const fileNames = files.map((file, i) => {
         const fileType = file.split("-")[2].split('.')[0];
-        // const fileType = arr[2]; // "langert"
-
-        // console.log(arr);
-        // const fileType = file.split('-')[1].split('.')[0];
-        console.log(fileType);
-        return  { name: file, type: fileType };
+        return  { name: file, type: fileType, icon: `/static/images/characterIcons/${fileType}.svg` };
     });
 
     return fileNames;
@@ -32,7 +27,6 @@ async function getFileNames(directoryPath) {
     return [];
   }
 }
-
 
 homeRouter.get('/', async (req, res) => {
 
