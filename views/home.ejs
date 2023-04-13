@@ -22,7 +22,7 @@
             <% for (let row=0 ; row < characterAmount; row++) { %>
                 <li data-track class="track <%= typeof characterObject[row] !== undefined && characterObject[row] ? `track--${characterObject[row].type}`: '' %> hide" <%= typeof characterObject[row] !== undefined && characterObject[row] ? (characterObject[row].type == "eyeguy" ? 'data-track-wide' : '') : '' %>>
                     <picture class="icon-container">
-                        <img class="icon-image" src="../static/images/worm.svg" alt="Worm">
+                        <img class="icon-image" src="<%= typeof characterObject[row] !== undefined && characterObject[row] ? characterObject[row].icon : '/static/images/characterIcons/worm.svg' %>" alt="Worm">
                     </picture>
 
                     <% if (typeof characterObject[row] !== undefined && characterObject[row]  && characterObject[row].type == "eyeguy") { %>
