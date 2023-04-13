@@ -298,7 +298,7 @@ div.worm.bottom::after {
 }
 
 /* Single tracks */
-.track-container>.track {
+.track {
     display: flex;
     background-color: var(--track-color);
     box-shadow: .1875rem .1875rem 0 0 rgba(0, 0, 0);
@@ -310,30 +310,29 @@ div.worm.bottom::after {
 }
 
 /* Notes container */
-.track-container>.track>ul {
+.btn-container, .btn--cell-ful {
     display: flex;
     gap: 1rem;
     width: 85%;
     margin: 0 auto;
 }
 
+.btn--cell-ful{
+    max-width: 85% !important;
+}
+
 /* Individual notes */
-.track-container>.track>ul>li {
+.btn--cell {
     height: 100%;
     width: 100%;
     max-width: 7.25rem;
     border-radius: .75rem;
     background-color: var(--note-color);
-}
-
-.track-container>.track>ul>li>button {
-    height: 100%;
-    width: 100%;
     border: none;
 }
 
 /* Delete track button */
-.track-container>.track>button {
+.btn--undo{
     padding: 0 .5rem;
 }
 

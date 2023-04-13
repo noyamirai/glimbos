@@ -2,37 +2,41 @@
 
     <%- include ('./partials/button.ejs', { btnType: "controls" }) -%>
 
-    <div class="character-container">
-        <div class="stand">
-            <% for (let row = 0; row < characterAmount; row++) { %>
-                <div data-character class="character cat"> <%- include ('./partials/characters/character-worm.ejs') -%> </div>
-            <% } %>
-        </div>
-    </div>
-
-    <ul class="track-container">
-        <% for (let row=0 ; row < characterAmount; row++) { %>
-            <li data-track class="track hide" <%= row == 5 ? 'data-track-wide' : '' %>>
-                <img src="/static/images/Ellipse 1.svg">
-                
-                <% if (row == 5) { %>
-                    <%- include ('./partials/button.ejs', { btnType: "cell--full"}) -%>
-                <% } else { %>
-                    <% for (let col = 0; col < cellAmount; col++) { %>
-                        <%- include ('./partials/button.ejs', { btnType: "cell", row: row, col: col}) -%>
+        <div class="character-container">
+            <div class="stand">
+                <% for (let row=0; row < characterAmount; row++) { %>
+                    <div data-character class="character cat"> <%- include ('./partials/characters/character-worm.ejs')
+                            -%> </div>
                     <% } %>
+            </div>
+        </div>
+
+        <ul class="track-container">
+            <% for (let row=0 ; row < characterAmount; row++) { %>
+                <li data-track class="track hide" <%=row==5 ? 'data-track-wide' : '' %>>
+                    <img src="/static/images/Ellipse 1.svg">
+
+                    <% if (row==5) { %>
+                        <%- include ('./partials/button.ejs', { btnType: "cell--full" }) -%>
+                            <% } else { %>
+                                <div class="btn-container">
+                                    <% for (let col=0; col < cellAmount; col++) { %>
+                                        <%- include ('./partials/button.ejs', { btnType: "cell" , row: row, col: col})
+                                            -%>
+                                            <% } %>
+                                </div>
+                                <% } %>
+
+                                    <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
+                </li>
+
                 <% } %>
-                
-                <%- include ('./partials/button.ejs', { btnType: "undo" }) -%>
-            </li>
+        </ul>
 
-        <% } %>
-    </ul>
-
-    <section class="mobile-text">
-        <h1>We don’t support mobile devices</h1>
-        <p>Please open this site on a larger device</p>
-    </section>
+        <section class="mobile-text">
+            <h1>We don’t support mobile devices</h1>
+            <p>Please open this site on a larger device</p>
+        </section>
 
 </main>
 
@@ -93,4 +97,5 @@
 <script src="https://unpkg.com/@tonejs/midi"></script>
 <script src="http://unpkg.com/tone"></script>
 
-<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>" data-cell-amount="<%= cellAmount%>"></script>
+<script type="module" src="/static/js/audio.js" data-app-locals data-character-amount="<%= characterAmount %>"
+    data-cell-amount="<%= cellAmount%>"></script>
