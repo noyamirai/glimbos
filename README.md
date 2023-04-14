@@ -17,6 +17,7 @@ With Glimbos you can create your own beat by interacting with a bunch of quirky 
 There is no endgoal, no challenge and no tasks, with Glimbos its all about relaxing and enjoying life and its creations, you are here to create something beautiful and are presented with the tools to do so.
 
 ## Debriefing
+A front-end for musical instrument sounds that generate music visualizations based on data. You want to give the user the chance to adjust the end result. During this project, a user wants to be able to play multiple sounds at the same time to generate a nice beat.
 
 ## Work process
 
@@ -44,6 +45,8 @@ We got feedback on this design that the blue background color was too bold for t
 
 ## Drawings, sketches and important images
 
+Before we started designing we made a few sketches of our characters and how the site was going to look like. Below you can see some of the sketches we made.
+
 ![image](https://user-images.githubusercontent.com/90341211/231725062-4a223452-5da6-4aaa-9d0a-c650c2577157.png)
 ![image](https://user-images.githubusercontent.com/90341211/231725107-07e01c19-503b-4f60-862a-1493aa5b7f18.png)
 ![image](https://user-images.githubusercontent.com/90341211/231725144-1c9f68bb-0283-4fb6-ae66-2568955f21d7.png)
@@ -62,7 +65,7 @@ We tested our project with a few people, we asked them to make a beat and asked 
 
 - Findings:
 
-  -
+  - 
 
 - Asked Questions:
 
@@ -106,4 +109,3 @@ We tested our project with a few people, we asked them to make a beat and asked 
 
 - Link to video:
 
-## Links
