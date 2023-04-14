@@ -73,7 +73,6 @@ playButton.addEventListener("click", async () => {
       console.log(currentStep);
     
       if (currentStep==1) {
-        
         characterBtns.forEach((characterBtn) => {
           characterBtn.classList.remove(sequenceStartedClass)
         })
@@ -184,10 +183,11 @@ characterBtns.forEach((character, i) => {
     const allColumns = document.querySelectorAll('[data-track]');
     allColumns[i].classList.toggle('hide');
 
-
     // melody
     if (characterType == 'eyeguy' && character.className.includes('selected') && bodyEl.className.includes('playing')) {
       activateMelody();
+    } else {
+        melodyPlayer.stop();
     }
 
     // @CHRIS!!!!!
