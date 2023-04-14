@@ -780,7 +780,7 @@ div.worm.head .mouth {
     position: absolute;
     top: 6em;
     left: 2.5em;
-    transition: height 1s ease-in-out;
+    transition: height .2s ease-in-out;
 }
 
 .worm.sequence div.worm.head .mouth {
@@ -792,14 +792,14 @@ div.worm.body {
     width: 10em;
     height: 2em;
     background: #1FA8C7;
-    transition: height 2s ease-in-out;
+    transition: height .5s ease-in-out;
     position: relative;
     bottom: -0.0625rem;
     z-index: -1;
 }
 
 .worm.sequence div.worm.body {
-    height: 12em;
+    height: 8em;
 }
 
 div.worm.bottom {
