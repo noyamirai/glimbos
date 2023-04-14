@@ -83,6 +83,14 @@ button {
     margin-right: 0.5rem;
 }
 
+.btn--play.clicked {
+    background-color: #1F4FF6;
+}
+
+.btn--play.clicked::before {
+    filter: invert(1) brightness(2);
+}
+
 .btn--play::before,
 .btn--stop::before {
     content: '';
