@@ -334,7 +334,8 @@ p {
 }
 
 .character-container .stand .character.eyeguy {
-    left: 85%;
+    left: 75%;
+    transform: scale(.8);
 }
 
 .mobile-text {
@@ -553,7 +554,6 @@ p {
     z-index: 10;
 }
 
-
 .eyeguy>div>.eye:before {
     content: "";
     display: block;
@@ -562,7 +562,7 @@ p {
     width: 100%;
     position: absolute;
     top: 0;
-    animation: blink 3s linear infinite;
+    animation: blink 4s linear infinite;
     z-index: 4;
 }
 
@@ -574,10 +574,9 @@ p {
     width: 100%;
     bottom: 0;
     position: absolute;
-    animation: blink 3s linear infinite;
+    animation: blink 4s linear infinite;
     z-index: 4;
 }
-
 
 .eyeguy>div>.eye:nth-of-type(2) {
     right: 2rem;
@@ -606,6 +605,16 @@ p {
     left: auto;
 }
 
+body.playing .eyeguy.selected .pupil-left {
+    animation: eyeLeft 1s linear forwards;
+    animation-iteration-count: 1;
+}
+
+body.playing .eyeguy.selected .pupil-right {
+    animation: eyeRight 1s linear forwards;
+    animation-iteration-count: 1;
+}
+
 .eyeguy>div>.mouth {
     width: 1.5rem;
     height: 0rem;
@@ -616,18 +625,7 @@ p {
     left: 50%;
     transform: translate(-50%);
     background-color: #e684ba;
-    /* transition: height 500ms ease-in-out; */
     z-index: 12;
-}
-
-body.playing .eyeguy.selected>div>.eye:after {
-    right: 1rem;
-    left: initial;
-}
-
-body.playing .eyeguy.selected>div>.eye:nth-of-type(2):after {
-    left: 1rem;
-    right: initial;
 }
 
 body.playing .eyeguy.selected .mouth {
@@ -646,13 +644,39 @@ body.playing .eyeguy.selected .mouth {
     border-width: .25rem;
 } */
 
+
+@keyframes eyeLeft {
+    0% {
+        left: 1.5rem;
+        right: auto;
+    }
+
+    100% {
+        left: auto;
+        right: 1.5rem;
+    }
+}
+
+@keyframes eyeRight {
+    0% {
+        right: 1.5rem;
+        left: auto;
+    }
+
+    100% {
+        right: auto;
+        left: 1.5rem;
+    }
+}
+
 @keyframes mouth {
     0% {
         height: 0;
     }
 
     100% {
-        height: 5rem;
+        height: 3rem;
+        width: 3rem;
     }
 }
 
@@ -663,7 +687,7 @@ body.playing .eyeguy.selected .mouth {
     }
 
     50% {
-        bottom: -.5rem;
+        bottom: -.3rem;
     }
 
     100% {
@@ -676,38 +700,16 @@ body.playing .eyeguy.selected .mouth {
         height: 0rem;
     }
 
-    5% {
+    3% {
         height: 3rem;
     }
 
-    10% {
-        height: 0rem;
-    }
-
-    15% {
-        height: 3rem;
-    }
-
-    20% {
-        height: 0rem;
-    }
-
-    65% {
-        height: 0rem;
-    }
-
-    70% {
-        height: 3rem;
-    }
-
-    75% {
+    6% {
         height: 0rem;
     }
 
     100% {
         height: 0rem;
-
-
     }
 }
 
