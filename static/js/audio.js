@@ -24,6 +24,7 @@ let GLOBAL_STEPS = initializeSteps();
 // Set up the current step counter
 let currentStep = 0;
 let melodyPlayer;
+let activeSeq;
 
 // Add event listeners to the step buttons
 const stepButtons = document.querySelectorAll("[data-track-cell]");
@@ -43,7 +44,33 @@ stepButtons.forEach((button) => {
   });
 });
 
-let activeSeq;
+// let synth;
+// let notes = [];
+
+// fetch("https://api-hitloop.responsible-it.nl/test_json?seed=120")
+//   .then(response => response.json())
+//   .then(midi => {
+
+//     midi.tracks.forEach(track => {
+
+//       // TODO: get categories
+//       console.log(track);
+//       const trackNotes = track.notes
+
+//       trackNotes.forEach(note => {
+//         notes.push({
+//           pitch: note.name,
+//           velocity: note.velocity,
+//           time: note.time,
+//           duration: note.duration,
+//         });
+//       });
+//     });
+
+//     synth = new Tone.Synth().toDestination();
+//     console.log(notes);
+
+//   });
 
 // Start the step sequencer
 playButton.addEventListener("click", async () => {
@@ -73,7 +100,6 @@ playButton.addEventListener("click", async () => {
       console.log(currentStep);
     
       if (currentStep==1) {
-        
         characterBtns.forEach((characterBtn) => {
           characterBtn.classList.remove(sequenceStartedClass)
         })
@@ -103,6 +129,7 @@ playButton.addEventListener("click", async () => {
             if (buttonCol == currentStep-1 && buttonRow != 5 && GLOBAL_STEPS[buttonRow][buttonCol]) {
               console.log('play sound!');
               rules[buttonRow].player.start();
+                // synth.triggerAttackRelease('C4', '8n', time);
             }
             
             }
@@ -134,14 +161,7 @@ playButton.addEventListener("click", async () => {
   
         } else if (!seqBtn.className.includes(activeStateClass) && (currentStep-1) > activeSeq) {
 
-          if (characterType == 'worm') {
-            
-            setTimeout(() => {
-              characterBtns[row].classList.remove(sequenceStartedClass);  
-            }, 300);
-          } else {
-              characterBtns[row].classList.remove(sequenceStartedClass);
-          }
+            characterBtns[row].classList.remove(sequenceStartedClass);
         
 
           if (characterType == 'langert') {
@@ -184,10 +204,15 @@ characterBtns.forEach((character, i) => {
     const allColumns = document.querySelectorAll('[data-track]');
     allColumns[i].classList.toggle('hide');
 
-
     // melody
     if (characterType == 'eyeguy' && character.className.includes('selected') && bodyEl.className.includes('playing')) {
       activateMelody();
+    } else {
+      
+        if(melodyPlayer && melodyPlayer.state === "started") {
+
+          melodyPlayer.stop();
+        }
     }
 
     // @CHRIS!!!!!
