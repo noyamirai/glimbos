@@ -146,7 +146,7 @@ playButton.addEventListener("click", async () => {
 
           if (characterType == 'langert') {
             const imageEl = character.querySelector('img');
-            imageEl.src = '/static/images/langert.png';
+            imageEl.src = '/static/images/langert_idle.gif';
           }
         }
       });
@@ -195,7 +195,7 @@ characterBtns.forEach((character, i) => {
       const imageEl = character.querySelector('img');
 
       if (character.className.includes('selected')) {
-        imageEl.src = '/static/images/langert_yell.png';
+        imageEl.src = '/static/images/langert_idle.gif';
       } else {
         imageEl.src = '/static/images/langert.png';
       }
