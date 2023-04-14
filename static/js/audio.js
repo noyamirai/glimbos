@@ -250,6 +250,15 @@ undoButtons.forEach((btn, i) => {
       cell.classList.remove('active');
     });
 
+    const characterType = characterBtns[i].getAttribute('data-character-type');
+
+    if (characterType == 'eyeguy') {
+      
+        if(melodyPlayer && melodyPlayer.state === "started") {
+          melodyPlayer.stop();
+        }
+    }
+
       const selectedCharacters = document.querySelectorAll('[data-character].selected');
 
       if (selectedCharacters.length == 0) {
